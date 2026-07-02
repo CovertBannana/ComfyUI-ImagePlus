@@ -1,5 +1,5 @@
 [project]
-name = "comfyui-imageplus-inspector"
+name = "comfyui-imageplus"
 description = "Single-node image inspection tools for ComfyUI with CivitAI browsing, local image metadata parsing, preview, and prompt utilities."
 version = "0.1.0"
 license = { text = "MIT" }
@@ -10,5 +10,5 @@ Repository = "https://github.com/CovertBannana/ComfyUI_ImagePlus_Inspector"
 
 [tool.comfy]
 PublisherId = "covertbannana"
-DisplayName = "ComfyUI ImagePlus Inspector"
+DisplayName = "ComfyUI ImagePlus"
 Icon = ""
