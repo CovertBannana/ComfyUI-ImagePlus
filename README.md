@@ -1,242 +1,177 @@
 # ComfyUI ImagePlus
 
-A ComfyUI custom node pack for inspecting AI images from CivitAI or local files.
+ComfyUI Image is a custom unified nodes pack for primarily for Image to Image generation with a toggleable Text to Image option for easy switch back. It allows for CivitAI image inspection, local image upload/drop, metadata extraction, prompt syncing, and ImagePlus workflow helper nodes.
+It is a unified (combined nodes) successor to ComfyUI CivitAI ImagePlus, https://github.com/CovertBannana/ComfyUI_CivitAI_ImagePlus
+Since CivitAI released their own node pack, with different functions to ImagePlus, it still seemed necessary to change the naming relation to CivitAI, for this new unified node pack.
 
-ImagePlus Inspector provides a single combined image inspection node with:
-
-- CivitAI gallery browsing
-- CivitAI URL fetch
-- local image upload
-- local image drag/drop
-- image preview
-- selected image dimension display
-- filtered metadata display
-- raw metadata display
-- prompt extraction
-- open image action
-- copy URL action
-
-It also includes a separate ImagePlus Prompt node for users who want an editable prompt node with direct conditioning output.
-
-This project is not affiliated with or endorsed by CivitAI. It provides optional CivitAI browsing/fetch support alongside local image metadata inspection.
-
----
+The new nodes feature Model, Clip and VAE pass through for a smoother work flow.
+The KSampler Adv includes a VAE encode for direct image input and built-in empty latent image options that combined with a toggle will instantly switch between I2I and T2I.
+The effort was to eliminate the common vae encode, empty latent image and clip text encode (prompt) that are used in almost all workflows.
+The Nodes are not restricted to being used exclusively with the packs other nodes and should incorporate the necessary outputs to be used with standard nodes.
 
 ## Nodes
 
-### ImagePlus Inspector
+- ImagePlus Inspector
+- ImagePlus Prompt
+- ImagePlus KSampler Adv
 
-A combined image and metadata inspection node.
+## Features
 
-Features:
-
-- Open a CivitAI gallery from inside ComfyUI
-- Fetch a CivitAI image by URL
-- Upload a local image
-- Drop a local image onto the metadata panel
-- Preview the selected image
-- Display image dimensions in the preview area
-- View filtered useful metadata
-- View raw embedded metadata
-- Extract positive and negative prompts when available
-- Copy the CivitAI page URL or source URL
-- Open the selected image
-
-The inspector is designed to keep state scoped to the individual node instance.
-
----
-
-### ImagePlus Prompt
-
-A separate editable prompt node.
-
-Inputs:
-
-- `clip`
-
-Outputs:
-
-- `positive_conditioning`
-- `negative_conditioning`
-- `positive_prompt`
-- `negative_prompt`
-
-This allows users to connect the prompt node directly to a KSampler without adding separate CLIP Text Encode nodes, while still exposing the raw prompt strings for users who prefer other workflow styles.
-
-Example workflow shape:
-
-```text
-Checkpoint Loader CLIP
-        ↓
-ImagePlus Prompt
-        ├─ positive_conditioning → KSampler positive
-        └─ negative_conditioning → KSampler negative
-```
-
----
+- CivitAI gallery browsing
+- Fetch image/post URL support
+- Local image upload and drag/drop
+- Image preview with dimensions
+- Metadata tabs
+- Positive and negative prompt extraction
+- Prompt conditioning outputs
+- Model/VAE pass-through
+- ImagePlus KSampler Adv node for switching between Image In and Empty Latent sampling paths
 
 ## Installation
 
-### Manual Install
+Clone this repository into your ComfyUI `custom_nodes` folder:
 
-Go to your ComfyUI custom nodes folder:
-
-```bash
-cd ComfyUI/custom_nodes
+```
+Open a command prompt in: ComfyUI/custom_nodes
+git clone https://github.com/CovertBannana/ComfyUI-ImagePlus.git
 ```
 
-Clone the repository:
+Restart ComfyUI after installation.
 
-```bash
-git clone https://github.com/CovertBannana/ComfyUI_ImagePlus_Inspector.git
+## Requirements
+
+The package currently uses:
+
+```txt
+aiohttp>=3.9.0
 ```
 
-Restart ComfyUI.
+ComfyUI normally provides `torch`, `numpy`, and `Pillow`.
 
----
+## Optional CivitAI API Key
 
-## CivitAI API Key
+To use a CivitAI API key, add your CivitAI API to this file inside the node folder api_key.txt
 
-CivitAI browsing, fetching, and protected image preview require a CivitAI API key.
 
-Copy:
+## ImagePlus Inspector
+
+`ImagePlus Inspector` provides the image selection, upload, preview, metadata, and prompt inspection workflow.
+
+### Outputs
+
+- `image`: IMAGE output for downstream image or latent workflows
+- `positive`: extracted positive prompt string
+- `negative`: extracted negative prompt string
+- `info`: filtered info/metadata string
+
+### Uses
+
+- Browse/select CivitAI images
+- Fetch an image/post URL
+- Upload or drag/drop a local image
+- Preview selected image and dimensions
+- Extract prompts and metadata
+- Send image output into img2img workflows
+
+## ImagePlus Prompt
+
+`ImagePlus Prompt` receives model, clip, and vae inputs, then outputs prompt conditioning and pass-through model/VAE connections.
+
+### Inputs
+
+- `model`: MODEL
+- `clip`: CLIP
+- `vae`: VAE
+
+### Outputs
+
+- `model`: MODEL pass-through
+- `vae`: VAE pass-through
+- `positive_conditioning`: CONDITIONING for KSampler positive input
+- `negative_conditioning`: CONDITIONING for KSampler negative input
+- `positive_prompt`: extracted positive prompt string
+- `negative_prompt`: extracted negative prompt string
+
+### Recommended Wiring
 
 ```text
-api_key.txt.example
+Checkpoint Loader:model
+  → ImagePlus Prompt:model
+
+Checkpoint Loader:clip
+  → ImagePlus Prompt:clip
+
+Checkpoint Loader:vae
+  → ImagePlus Prompt:vae
+
+ImagePlus Prompt:model
+  → ImagePlus KSampler Adv:model
+
+ImagePlus Prompt:vae
+  → ImagePlus KSampler Adv:vae
+
+ImagePlus Prompt:positive_conditioning
+  → ImagePlus KSampler Adv:positive
+
+ImagePlus Prompt:negative_conditioning
+  → ImagePlus KSampler Adv:negative
 ```
 
-to:
+## ImagePlus KSampler Adv
 
-```text
-api_key.txt
+`ImagePlus KSampler Adv` is an ImagePlus workflow helper node that combines the common img2img/txt2img latent setup with KSampler execution.
+
+It can operate in two modes using the `image_in` toggle:
+
+- `image_in = true`  
+  Encodes the connected `IMAGE` input through the connected VAE, then runs sampling.
+
+- `image_in = false`  
+  Creates an empty latent internally using the selected width, height, and batch size, then runs sampling.
+
+This replaces the need for a separate `VAE Encode`, `Empty Latent Image`, and latent switch node.
+
+### Inputs
+
+- `model`: model input from `ImagePlus Prompt` or Checkpoint Loader
+- `vae`: VAE input from `ImagePlus Prompt` or Checkpoint Loader
+- `positive`: positive conditioning
+- `negative`: negative conditioning
+- `image_in`: toggle between image input mode and empty latent mode
+- `width`: empty latent width
+- `height`: empty latent height
+- `batch_size`: empty latent batch count
+- `seed`: sampler seed
+- `steps`: sampler steps
+- `cfg`: CFG scale
+- `sampler_name`: sampler selection
+- `scheduler`: scheduler selection
+- `denoise`: denoise strength
+- `image`: optional image input used when `image_in` is enabled
+
+### Outputs
+
+- `samples`: latent output for VAE Decode
+- `vae`: VAE pass-through output for VAE Decode
+
+
+### Denoise Notes
+
+When using `image_in = true`, this behaves like an img2img workflow. Typical denoise values are usually below `1.0`, such as:
+
+```
+0.35 to 0.75
 ```
 
-Then edit `api_key.txt`:
+When using `image_in = false`, this behaves like a txt2img workflow from an empty latent. Typical denoise is:
 
-```text
-CIVITAI_API_KEY=YOUR_CIVITAI_API_KEY_HERE
+```
+1.0
 ```
 
-Restart ComfyUI after adding or changing the key.
+The node does not automatically change denoise. The user controls denoise manually.
 
----
-
-## Local Image Metadata Support
-
-ImagePlus Inspector can parse local image metadata from:
-
-- PNG `tEXt`
-- PNG `iTXt`
-- JPEG EXIF `ImageDescription`
-- JPEG EXIF `UserComment`
-- A1111-style parameter strings
-- ComfyUI prompt JSON
-- ComfyUI workflow JSON
-
-When available, it extracts:
-
-- positive prompt
-- negative prompt
-- model/checkpoint
-- UNET
-- VAE
-- CLIP
-- seed
-- steps
-- CFG
-- sampler
-- scheduler
-- denoise
-- image size
-
----
-
-## CivitAI Support
-
-ImagePlus Inspector supports:
-
-- Gallery browsing
-- URL fetch from CivitAI image or post URLs
-- Preview through a backend proxy route
-- `.com` and `.red` page link handling
-- filtered metadata summaries
-- raw metadata viewing
-
-Supported URL examples:
-
-```text
-https://civitai.com/images/<id>
-https://civitai.com/posts/<id>
-https://civitai.red/images/<id>
-https://civitai.red/posts/<id>
-```
-
----
-
-## Image Size Display
-
-The selected image size is displayed in the preview area when available.
-
-For local images, dimensions are read from the browser-loaded image.
-
-For CivitAI images, dimensions are read from API metadata when available, with preview-load fallback when needed.
-
----
-
-## Design Notes
-
-ImagePlus Inspector is built around node-scoped state.
-
-The node uses a single apply pipeline:
-
-```text
-applyImageToInspectorNode(node, normalized)
-```
-
-This avoids global support-node updates and keeps CivitAI selections, local uploads, and previews isolated to the node that initiated the action.
-
-The prompt node remains separate so users can choose whether to use:
-
-- ImagePlus Prompt
-- standard ComfyUI CLIP Text Encode nodes
-- custom prompt nodes
-- other workflow-specific prompt tools
-
----
-
-## Current Scope
-
-The first version focuses on frontend image inspection and metadata extraction.
-
-The inspector outputs:
-
-- positive prompt string
-- negative prompt string
-- info string
-
-It does not currently output backend `IMAGE` tensors for local uploads.
-
-A future version may add backend image output support using a dedicated upload/temp-storage bridge.
-
----
-
-## Repository Structure
-
-```text
-ComfyUI_ImagePlus_Inspector/
-├── __init__.py
-├── imageplus_inspector_backend.py
-├── js/
-│   └── imageplus_inspector.js
-├── pyproject.toml
-├── README.md
-├── LICENSE
-├── .comfyignore
-└── api_key.txt.example
-```
-
----
 
 ## License
 
-MIT
+MIT License. See `LICENSE` for details.
