@@ -4,7 +4,7 @@ ComfyUI ImagePlus is a custom unified nodes pack primarily for Image to Image ge
 It is a unified (combined nodes) successor to ComfyUI CivitAI ImagePlus, https://github.com/CovertBannana/ComfyUI_CivitAI_ImagePlus
 Since CivitAI released their own node pack, with different functions to ImagePlus, it still seemed necessary to change the naming relation to CivitAI, for this new unified node pack.
 
-The new nodes features Model, Clip and VAE pass through for a smoother work flow.
+The new nodes feature Model, Clip and VAE pass through for a smoother work flow.
 The KSampler Adv includes a VAE encode for direct image input and built-in empty latent image options that combined with a toggle will instantly switch between I2I and T2I.
 The effort was to eliminate the common vae encode, empty latent image and clip text encode (prompt) that are used in almost all workflows.
 The Nodes are not restricted to being used exclusively with the packs other nodes and should incorporate the necessary outputs to be used with standard nodes.
