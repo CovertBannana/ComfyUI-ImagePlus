@@ -1,6 +1,6 @@
 # ComfyUI ImagePlus
 
-ComfyUI Image is a custom unified nodes pack for primarily for Image to Image generation with a toggleable Text to Image option for easy switch back. It allows for CivitAI image inspection, local image upload/drop, metadata extraction, prompt syncing, and ImagePlus workflow helper nodes.
+ComfyUI ImagePlus is a custom unified nodes pack for primarily for Image to Image generation with a toggleable Text to Image option for easy switch back. It allows for CivitAI image inspection, local image upload/drop, metadata extraction, prompt syncing, and ImagePlus workflow helper nodes.
 It is a unified (combined nodes) successor to ComfyUI CivitAI ImagePlus, https://github.com/CovertBannana/ComfyUI_CivitAI_ImagePlus
 Since CivitAI released their own node pack, with different functions to ImagePlus, it still seemed necessary to change the naming relation to CivitAI, for this new unified node pack.
 
