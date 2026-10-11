@@ -1,13 +1,19 @@
 # ComfyUI ImagePlus
 
 ComfyUI ImagePlus is a custom unified nodes pack primarily for Image to Image generation with a toggleable Text to Image option for easy switch back. It allows for CivitAI image inspection, local image upload/drop, metadata extraction, prompt syncing, and ImagePlus workflow helper nodes.
-It is a unified (combined nodes) successor to ComfyUI CivitAI ImagePlus, https://github.com/CovertBannana/ComfyUI_CivitAI_ImagePlus
-Since CivitAI released their own node pack, with different functions to ImagePlus, it still seemed necessary to change the naming relation to CivitAI, for this new unified node pack.
+ComfyUI ImagePlus is the unified successor to ComfyUI CivitAI ImagePlus, https://github.com/CovertBannana/ComfyUI_CivitAI_ImagePlus
+
+Since CivitAI released their own node pack with different objectives, the direct naming relationship no longer made sense. ImagePlus has evolved into a broader image inspection, metadata extraction, gallery browsing, prompt conditioning, and workflow helper toolset.
 
 The new nodes feature Model, Clip and VAE pass through for a smoother work flow.
 The KSampler Adv includes a VAE encode for direct image input and built-in empty latent image options that combined with a toggle will instantly switch between I2I and T2I.
 The effort was to eliminate the common vae encode, empty latent image and clip text encode (prompt) that are used in almost all workflows.
 The Nodes are not restricted to being used exclusively with the packs other nodes and should incorporate the necessary outputs to be used with standard nodes.
+A trigger word input connector has been added to connect with a STRING node for a constant input or from other node packs like Lora Manager that offer that feature.
+There is now an option to store Favourite images in the Gallery and a recent Import list.
+Favourites can be added and removed.
+Recent list can be cleared.
+Both lists are stored in the favourites.json and recent.json files.
 
 ## Nodes
 
@@ -18,6 +24,7 @@ The Nodes are not restricted to being used exclusively with the packs other node
 ## Features
 
 - CivitAI gallery browsing
+- CivitAI gallery Favourite and Recent import list
 - Fetch image/post URL support
 - Local image upload and drag/drop
 - Image preview with dimensions
@@ -25,6 +32,7 @@ The Nodes are not restricted to being used exclusively with the packs other node
 - Positive and negative prompt extraction
 - Prompt conditioning outputs
 - Model/VAE pass-through
+- String/Trigger word input (optional)
 - ImagePlus KSampler Adv node for switching between Image In and Empty Latent sampling paths
 
 ## Installation
@@ -60,7 +68,7 @@ To use a CivitAI API key, add your CivitAI API to this file inside the node fold
 ### Outputs
 
 - `image`: IMAGE output for downstream image or latent workflows
-- `positive`: extracted positive prompt string
+- `positive`: final positive prompt used for conditioning, including optional Trigger Words input
 - `negative`: extracted negative prompt string
 - `info`: filtered info/metadata string
 
@@ -72,6 +80,9 @@ To use a CivitAI API key, add your CivitAI API to this file inside the node fold
 - Preview selected image and dimensions
 - Extract prompts and metadata
 - Send image output into img2img workflows
+- Favourite images for later reuse
+- Automatic Recent Imports history
+- JSON-based persistence for Favourites and Recents
 
 ## ImagePlus Prompt
 
@@ -82,6 +93,7 @@ To use a CivitAI API key, add your CivitAI API to this file inside the node fold
 - `model`: MODEL
 - `clip`: CLIP
 - `vae`: VAE
+- `trigger_words`: STRING (optional)
 
 ### Outputs
 
@@ -91,6 +103,7 @@ To use a CivitAI API key, add your CivitAI API to this file inside the node fold
 - `negative_conditioning`: CONDITIONING for KSampler negative input
 - `positive_prompt`: extracted positive prompt string
 - `negative_prompt`: extracted negative prompt string
+(positive_prompt and positive_conditioning now reflects the actual prompt used for conditioning, including Trigger Words/String inputs)
 
 ### Recommended Wiring
 

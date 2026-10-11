@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-imageplus"
 description = "ComfyUI custom nodes for CivitAI image inspection, local image upload/drop, metadata extraction, prompt syncing, and ImagePlus workflow helpers."
-version = "0.1.0"
+version = "1.0.0"
 license = { file = "LICENSE" }
 dependencies = [
     "aiohttp>=3.9.0"

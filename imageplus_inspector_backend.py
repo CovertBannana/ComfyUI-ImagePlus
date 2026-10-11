@@ -1,4 +1,4 @@
-import os
+﻿import os
 import json
 import aiohttp
 import urllib.request
@@ -18,6 +18,16 @@ import server
 
 NODE_DIR = os.path.dirname(os.path.abspath(__file__))
 API_KEY_FILE = os.path.join(NODE_DIR, "api_key.txt")
+
+FAVOURITES_FILE = os.path.join(
+    NODE_DIR,
+    "favourites.json"
+)
+
+RECENT_FILE = os.path.join(
+    NODE_DIR,
+    "recent.json"
+)
 
 DEFAULT_SITE_API_BASES = (
     "https://civitai.com/api/v1",
@@ -647,7 +657,7 @@ def extract_dimensions_from_meta(meta: dict):
             size.lower()
             .replace("px", "")
             .replace(" ", "")
-            .replace("×", "x")
+            .replace("Ã—", "x")
         )
 
         if "x" in normalized:
@@ -970,6 +980,80 @@ def parse_civitai_url_ids(raw_url: str):
 
     return result
 
+
+# ------------------------------------------------------------
+# Persistent Storage
+# ------------------------------------------------------------
+
+def ensure_json_store(path):
+    if os.path.exists(path):
+        return
+
+    with open(
+        path,
+        "w",
+        encoding="utf-8"
+    ) as f:
+        json.dump([], f)
+
+def load_json_store(path):
+    ensure_json_store(path)
+
+    try:
+        with open(
+            path,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
+            data = json.load(f)
+
+            if isinstance(data, list):
+                return data
+
+    except Exception:
+
+        corrupt_path = (
+            path +
+            ".corrupt"
+        )
+
+        try:
+            os.replace(
+                path,
+                corrupt_path
+            )
+        except Exception:
+            pass
+
+    ensure_json_store(path)
+
+    return []
+
+def save_json_store(
+    path,
+    data
+):
+    with open(
+        path,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
+        json.dump(
+            data,
+            f,
+            indent=2,
+            ensure_ascii=False
+        )
+
+ensure_json_store(
+    FAVOURITES_FILE
+)
+
+ensure_json_store(
+    RECENT_FILE
+)
 # ------------------------------------------------------------
 # Route Helpers
 # ------------------------------------------------------------
@@ -1009,6 +1093,86 @@ prompt_server = server.PromptServer.instance
 
 IMAGEPLUS_STATE_STORE = {}
 IMAGEPLUS_LOCAL_IMAGE_STORE = {}
+@prompt_server.routes.get(
+    "/imageplus_inspector/favourites/load"
+)
+async def load_favourites(request):
+
+    return web.json_response({
+        "items":
+            load_json_store(
+                FAVOURITES_FILE
+            )
+    })
+
+
+@prompt_server.routes.post(
+    "/imageplus_inspector/favourites/save"
+)
+async def save_favourites(request):
+
+    body = await request.json()
+
+    items = body.get(
+        "items",
+        []
+    )
+
+    save_json_store(
+        FAVOURITES_FILE,
+        items
+    )
+
+    print(
+        "[ImagePlus] favourites saved:",
+        len(items)
+    )
+
+    return web.json_response(
+        {"ok":True}
+    )
+
+
+@prompt_server.routes.get(
+    "/imageplus_inspector/recent/load"
+)
+async def load_recent(request):
+
+    return web.json_response({
+        "items":
+            load_json_store(
+                RECENT_FILE
+            )
+    })
+
+
+@prompt_server.routes.post(
+    "/imageplus_inspector/recent/save"
+)
+async def save_recent(request):
+
+    body = await request.json()
+
+    items = body.get(
+        "items",
+        []
+    )
+
+    items = items[:100]
+
+    save_json_store(
+        RECENT_FILE,
+        items
+    )
+
+    print(
+        "[ImagePlus] recent saved:",
+        len(items)
+    )
+
+    return web.json_response(
+        {"ok":True}
+    )
 
 
 
@@ -1545,6 +1709,14 @@ class ImagePlusPromptNode:
                 "clip": ("CLIP",),
                 "vae": ("VAE",),
             },
+            "optional": {
+                "trigger_words": (
+                    "STRING",
+                    {
+                        "forceInput": True
+                    }
+                ),
+            },
             "hidden": {
                 "unique_id": "UNIQUE_ID",
             },
@@ -1557,7 +1729,7 @@ class ImagePlusPromptNode:
         "positive_conditioning",
         "negative_conditioning",
         "positive_prompt",
-        "negative_prompt",
+        "negative_prompt"
     )
     FUNCTION = "encode"
     CATEGORY = "imageplus"
@@ -1571,7 +1743,7 @@ class ImagePlusPromptNode:
 
         return imageplus_state_fingerprint(unique_id, "prompt")
 
-    def encode(self, model, clip, vae, unique_id=None):
+    def encode(self, model, clip, vae, trigger_words="", unique_id=None):
         state = get_imageplus_state(unique_id, "prompt")
 
         if not state:
@@ -1592,19 +1764,37 @@ class ImagePlusPromptNode:
             "__imagePlusPromptNegative",
         )
 
-        positive_conditioning = encode_text_with_clip(clip, positive_text)
-        negative_conditioning = encode_text_with_clip(clip, negative_text)
+        trigger_text = str(
+            trigger_words or ""
+        ).strip()
+
+        combined_positive = positive_text
+
+        if trigger_text:
+
+            if combined_positive:
+                combined_positive += ", "
+
+            combined_positive += trigger_text
+
+        positive_conditioning = encode_text_with_clip(
+            clip,
+            combined_positive
+        )
+
+        negative_conditioning = encode_text_with_clip(
+            clip,
+            negative_text
+        )
 
         return (
             model,
             vae,
             positive_conditioning,
             negative_conditioning,
-            positive_text,
+            combined_positive,
             negative_text,
         )
-
-
 
 # ------------------------------------------------------------
 # ImagePlus KSampler Adv Helpers
@@ -1768,3 +1958,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "ImagePlusPromptNode": "ImagePlus Prompt",
     "ImagePlusKSamplerAdvNode": "ImagePlus KSampler Adv",
 }
+
+
+
