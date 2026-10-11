@@ -1,0 +1,2734 @@
+{
+  "id": "226c01ae-b978-495f-a7d8-fc77e7fa3347",
+  "revision": 0,
+  "last_node_id": 8,
+  "last_link_id": 11,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "VAELoader",
+      "pos": [
+        83.43793915647849,
+        499.1870988913717
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.26.0",
+        "Node name for S&R": "VAELoader",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Wan2_1_VAE_fp32.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "Wan2_1_VAE_fp32.safetensors"
+      }
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": [
+        77.2883028347397,
+        344.68789616774893
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.26.0",
+        "Node name for S&R": "CLIPLoader",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "qwen3VL4BAbliteratedComfyui_v10.safetensors",
+        "krea2",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3VL4BAbliteratedComfyui_v10.safetensors",
+        "type": "krea2",
+        "device": "default"
+      }
+    },
+    {
+      "id": 3,
+      "type": "UNETLoader",
+      "pos": [
+        79.66554759145544,
+        217.2466479767449
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.33.1",
+        "Node name for S&R": "UNETLoader",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Krea2\\krea2W4a8_turboW4a8.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "Krea2\\krea2W4a8_turboW4a8.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 4,
+      "type": "ImagePlusPromptNode",
+      "pos": [
+        461.95830498753224,
+        215.58790664208453
+      ],
+      "size": [
+        722.9500122070312,
+        327.23333740234375
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 9
+        },
+        {
+          "label": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 10
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 11
+        },
+        {
+          "label": "trigger_words",
+          "name": "trigger_words",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            1
+          ]
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "links": [
+            2
+          ]
+        },
+        {
+          "label": "positive_conditioning",
+          "name": "positive_conditioning",
+          "type": "CONDITIONING",
+          "links": [
+            3
+          ]
+        },
+        {
+          "label": "negative_conditioning",
+          "name": "negative_conditioning",
+          "type": "CONDITIONING",
+          "links": [
+            4
+          ]
+        },
+        {
+          "label": "positive_prompt",
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": []
+        },
+        {
+          "label": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-imageplus",
+        "ver": "d2fe5d557128a7e04c86c9a1e8b0a139f44a832d",
+        "Node name for S&R": "ImagePlusPromptNode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "__imagePlusPromptPositive": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene",
+      "__imagePlusPromptNegative": "bad ugly bad hands bad feet",
+      "__imagePlusPromptOriginal": {
+        "positive": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene",
+        "negative": "bad ugly bad hands bad feet"
+      },
+      "extensions": {
+        "__imagePlusPromptPositive": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene",
+        "__imagePlusPromptNegative": "bad ugly bad hands bad feet",
+        "__imagePlusPromptOriginal": {
+          "positive": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene",
+          "negative": "bad ugly bad hands bad feet"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "ImagePlusInspectorNode",
+      "pos": [
+        460.66666666666663,
+        622.0027018562768
+      ],
+      "size": [
+        776.566650390625,
+        708.3499755859375
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            5
+          ]
+        },
+        {
+          "name": "positive",
+          "type": "STRING",
+          "links": []
+        },
+        {
+          "name": "negative",
+          "type": "STRING",
+          "links": []
+        },
+        {
+          "name": "info",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-imageplus",
+        "ver": "d2fe5d557128a7e04c86c9a1e8b0a139f44a832d",
+        "Node name for S&R": "ImagePlusInspectorNode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "__imagePlusSource": "local",
+      "__imagePlusSourceUrl": "blob:http://127.0.0.1:8188/e620461e-e1e1-4751-96f7-0af65a0b20a0",
+      "__imagePlusPageUrl": "",
+      "__imagePlusFileName": "GTHam.png",
+      "__imagePlusLocalUploadId": "4b81f58e583e4a23a46ace78faf9069f",
+      "__imagePlusBackendUrl": "4b81f58e583e4a23a46ace78faf9069f",
+      "__imagePlusFetchUrl": "https://civitai.com/images/12654388",
+      "__imagePlusFilteredInfo": "Source: Local image\nFile: GTHam.png\nImage Size: 1024 Ã— 1024 px\nModel: Zimage\\z image turbo Q6 K.gguf\nVAE: ae.safetensors\nCLIP: Qwen3-4B-UD-Q6_K_XL.gguf\nSteps: 9\nCFG: 1\nSampler: euler\nScheduler: simple\nSeed: 105918980883001\nDenoise: 1",
+      "__imagePlusRawMetadata": "{\n  \"parameters\": \"a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\\n<lora:CuteRetro_ZIT_v2:0.8>\\nNegative prompt: bad ugly bad hands bad feet\\nSteps: 9, Sampler: Euler simple, CFG scale: 1.0, Seed: 105918980883001, Size: 1024x1024, Lora hashes: \\\"CuteRetro_ZIT_v2: cfc2865cfd\\\"\",\n  \"workflow\": \"{\\\"id\\\": \\\"277d5330-9a37-4a5b-913a-aff3332bdfee\\\", \\\"revision\\\": 0, \\\"last_node_id\\\": 17, \\\"last_link_id\\\": 20, \\\"nodes\\\": [{\\\"id\\\": 2, \\\"type\\\": \\\"CLIPLoaderGGUF\\\", \\\"pos\\\": [578.0695335629132, 81.1074011737234], \\\"size\\\": [354.26389058430993, 150.9999974568685], \\\"flags\\\": {}, \\\"order\\\": 0, \\\"mode\\\": 0, \\\"inputs\\\": [], \\\"outputs\\\": [{\\\"name\\\": \\\"CLIP\\\", \\\"type\\\": \\\"CLIP\\\", \\\"links\\\": [2]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"ComfyUI-GGUF\\\", \\\"ver\\\": \\\"d3e14efda6bb891de0406d2debffcb07e88d4231\\\", \\\"Node name for S&R\\\": \\\"CLIPLoaderGGUF\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"Qwen3-4B-UD-Q6_K_XL.gguf\\\", \\\"lumina2\\\"]}, {\\\"id\\\": 3, \\\"type\\\": \\\"ModelSamplingAuraFlow\\\", \\\"pos\\\": [989.3715525555219, -107.04488805407404], \\\"size\\\": [225, 68.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 4, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"model\\\", \\\"type\\\": \\\"MODEL\\\", \\\"link\\\": 1}], \\\"outputs\\\": [{\\\"name\\\": \\\"MODEL\\\", \\\"type\\\": \\\"MODEL\\\", \\\"links\\\": [3]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"ModelSamplingAuraFlow\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [1.73]}, {\\\"id\\\": 5, \\\"type\\\": \\\"TriggerWord Toggle (LoraManager)\\\", \\\"pos\\\": [1410.341091282844, 102.64049823721763], \\\"size\\\": [273.8666595458984, 248], \\\"flags\\\": {}, \\\"order\\\": 7, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"trigger_words\\\", \\\"shape\\\": 7, \\\"type\\\": \\\"string\\\", \\\"link\\\": 4}], \\\"outputs\\\": [{\\\"name\\\": \\\"filtered_trigger_words\\\", \\\"type\\\": \\\"STRING\\\", \\\"links\\\": [5]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfyui-lora-manager\\\", \\\"ver\\\": \\\"0.9.11\\\", \\\"Node name for S&R\\\": \\\"TriggerWord Toggle (LoraManager)\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [true, true, false, [{\\\"text\\\": \\\"masterpiece, best quality, anime coloring, anime screencap,\\\", \\\"active\\\": true, \\\"strength\\\": null, \\\"highlighted\\\": false}], \\\"masterpiece, best quality, anime coloring, anime screencap,\\\"]}, {\\\"id\\\": 7, \\\"type\\\": \\\"CLIPTextEncode\\\", \\\"pos\\\": [1847.273042726062, 408.1006810070729], \\\"size\\\": [210, 34], \\\"flags\\\": {\\\"collapsed\\\": true}, \\\"order\\\": 6, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"clip\\\", \\\"type\\\": \\\"CLIP\\\", \\\"link\\\": 7}], \\\"outputs\\\": [{\\\"name\\\": \\\"CONDITIONING\\\", \\\"type\\\": \\\"CONDITIONING\\\", \\\"links\\\": [9]}], \\\"title\\\": \\\"Negative Prompt\\\", \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"CLIPTextEncode\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"bad ugly bad hands bad feet\\\"], \\\"color\\\": \\\"#322\\\", \\\"bgcolor\\\": \\\"#533\\\", \\\"shape\\\": 2}, {\\\"id\\\": 9, \\\"type\\\": \\\"KSampler\\\", \\\"pos\\\": [2253.5540632962975, 229.3160370870469], \\\"size\\\": [225, 583.3333333333334], \\\"flags\\\": {}, \\\"order\\\": 9, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"model\\\", \\\"type\\\": \\\"MODEL\\\", \\\"link\\\": 11}, {\\\"name\\\": \\\"positive\\\", \\\"type\\\": \\\"CONDITIONING\\\", \\\"link\\\": 10}, {\\\"name\\\": \\\"negative\\\", \\\"type\\\": \\\"CONDITIONING\\\", \\\"link\\\": 9}, {\\\"name\\\": \\\"latent_image\\\", \\\"type\\\": \\\"LATENT\\\", \\\"link\\\": 8}], \\\"outputs\\\": [{\\\"name\\\": \\\"LATENT\\\", \\\"type\\\": \\\"LATENT\\\", \\\"links\\\": [12]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"KSampler\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [105918980883001, \\\"randomize\\\", 9, 1, \\\"euler\\\", \\\"simple\\\", 1]}, {\\\"id\\\": 10, \\\"type\\\": \\\"VAELoader\\\", \\\"pos\\\": [2262.4470827664904, 93.24787864068625], \\\"size\\\": [213.73611450195312, 68.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 1, \\\"mode\\\": 0, \\\"inputs\\\": [], \\\"outputs\\\": [{\\\"name\\\": \\\"VAE\\\", \\\"type\\\": \\\"VAE\\\", \\\"links\\\": [13]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"VAELoader\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"ae.safetensors\\\"]}, {\\\"id\\\": 11, \\\"type\\\": \\\"VAEDecode\\\", \\\"pos\\\": [2526.589706156884, 100.4172376521125], \\\"size\\\": [187.5, 60], \\\"flags\\\": {}, \\\"order\\\": 10, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"samples\\\", \\\"type\\\": \\\"LATENT\\\", \\\"link\\\": 12}, {\\\"name\\\": \\\"vae\\\", \\\"type\\\": \\\"VAE\\\", \\\"link\\\": 13}], \\\"outputs\\\": [{\\\"name\\\": \\\"IMAGE\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"links\\\": [14]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"VAEDecode\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": []}, {\\\"id\\\": 12, \\\"type\\\": \\\"FastLaplacianSharpen\\\", \\\"pos\\\": [2767.1508376604534, 100.4172376521125], \\\"size\\\": [225.6944529215495, 68.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 11, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"link\\\": 14}], \\\"outputs\\\": [{\\\"name\\\": \\\"IMAGE\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"links\\\": [16]}], \\\"properties\\\": {\\\"aux_id\\\": \\\"vrgamegirl19/comfyui-vrgamedevgirl\\\", \\\"ver\\\": \\\"80d994e4296a352b76982cf548845c274a42eaf2\\\", \\\"Node name for S&R\\\": \\\"FastLaplacianSharpen\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [0.4]}, {\\\"id\\\": 13, \\\"type\\\": \\\"FastFilmGrain\\\", \\\"pos\\\": [2763.054048013794, 334.8581818446806], \\\"size\\\": [292.5555674235026, 125], \\\"flags\\\": {}, \\\"order\\\": 13, \\\"mode\\\": 4, \\\"inputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"link\\\": 17}], \\\"outputs\\\": [{\\\"name\\\": \\\"IMAGE\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"links\\\": [18]}], \\\"properties\\\": {\\\"aux_id\\\": \\\"vrgamegirl19/comfyui-vrgamedevgirl\\\", \\\"ver\\\": \\\"80d994e4296a352b76982cf548845c274a42eaf2\\\", \\\"Node name for S&R\\\": \\\"FastFilmGrain\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [0.012, 0.39, 4]}, {\\\"id\\\": 14, \\\"type\\\": \\\"Fast Bypasser (rgthree)\\\", \\\"pos\\\": [2765.1024428371234, 207.90785720780818], \\\"size\\\": [287.81944274902344, 88.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 12, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"dir\\\": 3, \\\"name\\\": \\\"\\\\ud83c\\\\udf00 Fast Laplacian Sharpen\\\", \\\"type\\\": \\\"*\\\", \\\"link\\\": 16}, {\\\"dir\\\": 3, \\\"name\\\": \\\"\\\", \\\"type\\\": \\\"*\\\", \\\"link\\\": null}], \\\"outputs\\\": [{\\\"dir\\\": 4, \\\"name\\\": \\\"OPT_CONNECTION\\\", \\\"type\\\": \\\"*\\\", \\\"links\\\": [17]}], \\\"properties\\\": {\\\"toggleRestriction\\\": \\\"default\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}}, {\\\"id\\\": 15, \\\"type\\\": \\\"Fast Bypasser (rgthree)\\\", \\\"pos\\\": [2765.1024428371234, 507.8723471070283], \\\"size\\\": [259.1527811686198, 88.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 14, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"dir\\\": 3, \\\"name\\\": \\\"\\\\ud83c\\\\udf9e\\\\ufe0f Fast Film Grain\\\", \\\"type\\\": \\\"*\\\", \\\"link\\\": 18}, {\\\"dir\\\": 3, \\\"name\\\": \\\"\\\", \\\"type\\\": \\\"*\\\", \\\"link\\\": null}], \\\"outputs\\\": [{\\\"dir\\\": 4, \\\"name\\\": \\\"OPT_CONNECTION\\\", \\\"type\\\": \\\"*\\\", \\\"links\\\": [19]}], \\\"properties\\\": {\\\"toggleRestriction\\\": \\\"default\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}}, {\\\"id\\\": 16, \\\"type\\\": \\\"Save Image (LoraManager)\\\", \\\"pos\\\": [3157.5193712220853, 371.30456566410135], \\\"size\\\": [349.76389567057294, 223.3055623372396], \\\"flags\\\": {}, \\\"order\\\": 15, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"link\\\": 19}], \\\"outputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"links\\\": [20]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfyui-lora-manager\\\", \\\"ver\\\": \\\"0.9.11\\\", \\\"Node name for S&R\\\": \\\"Save Image (LoraManager)\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"ComfyUI\\\", \\\"png\\\", false, 100, true, true]}, {\\\"id\\\": 1, \\\"type\\\": \\\"UnetLoaderGGUF\\\", \\\"pos\\\": [580.0929083570272, -106.72013081928313], \\\"size\\\": [351.2361145019531, 145.43055216471356], \\\"flags\\\": {}, \\\"order\\\": 2, \\\"mode\\\": 0, \\\"inputs\\\": [], \\\"outputs\\\": [{\\\"name\\\": \\\"MODEL\\\", \\\"type\\\": \\\"MODEL\\\", \\\"links\\\": [1]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"ComfyUI-GGUF\\\", \\\"ver\\\": \\\"d3e14efda6bb891de0406d2debffcb07e88d4231\\\", \\\"Node name for S&R\\\": \\\"UnetLoaderGGUF\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"Zimage\\\\\\\\z_image_turbo-Q6_K.gguf\\\"]}, {\\\"id\\\": 4, \\\"type\\\": \\\"Lora Loader (LoraManager)\\\", \\\"pos\\\": [948.7035305158696, 90.32515500847936], \\\"size\\\": [397.87501017252606, 485.41666666666674], \\\"flags\\\": {}, \\\"order\\\": 5, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"model\\\", \\\"type\\\": \\\"MODEL\\\", \\\"link\\\": 3}, {\\\"name\\\": \\\"clip\\\", \\\"shape\\\": 7, \\\"type\\\": \\\"CLIP\\\", \\\"link\\\": 2}, {\\\"name\\\": \\\"lora_stack\\\", \\\"shape\\\": 7, \\\"type\\\": \\\"LORA_STACK\\\", \\\"link\\\": null}], \\\"outputs\\\": [{\\\"name\\\": \\\"MODEL\\\", \\\"type\\\": \\\"MODEL\\\", \\\"links\\\": [11]}, {\\\"name\\\": \\\"CLIP\\\", \\\"type\\\": \\\"CLIP\\\", \\\"links\\\": [6, 7]}, {\\\"name\\\": \\\"trigger_words\\\", \\\"type\\\": \\\"STRING\\\", \\\"links\\\": [4]}, {\\\"name\\\": \\\"loaded_loras\\\", \\\"type\\\": \\\"STRING\\\", \\\"links\\\": null}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfyui-lora-manager\\\", \\\"ver\\\": \\\"0.9.11\\\", \\\"Node name for S&R\\\": \\\"Lora Loader (LoraManager)\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"<lora:CuteRetro_ZIT_v2:0.80>\\\", [{\\\"name\\\": \\\"CuteRetro_ZIT_v2\\\", \\\"strength\\\": \\\"0.80\\\", \\\"active\\\": true, \\\"expanded\\\": false, \\\"clipStrength\\\": \\\"0.80\\\"}]]}, {\\\"id\\\": 17, \\\"type\\\": \\\"PreviewImage\\\", \\\"pos\\\": [3579.259969977156, 370.2946065816392], \\\"size\\\": [933.0832926432292, 1285.111083984375], \\\"flags\\\": {}, \\\"order\\\": 16, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"link\\\": 20}], \\\"outputs\\\": [], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"PreviewImage\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [], \\\"color\\\": \\\"#233\\\", \\\"bgcolor\\\": \\\"#355\\\"}, {\\\"id\\\": 8, \\\"type\\\": \\\"EmptySD3LatentImage\\\", \\\"pos\\\": [1431.774245450843, 366.1336300282571], \\\"size\\\": [225, 125], \\\"flags\\\": {}, \\\"order\\\": 3, \\\"mode\\\": 0, \\\"inputs\\\": [], \\\"outputs\\\": [{\\\"name\\\": \\\"LATENT\\\", \\\"type\\\": \\\"LATENT\\\", \\\"links\\\": [8]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"EmptySD3LatentImage\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [1024, 1024, 1]}, {\\\"id\\\": 6, \\\"type\\\": \\\"Prompt (LoraManager)\\\", \\\"pos\\\": [1740.706746297219, 82.9809302352777], \\\"size\\\": [420.0416564941406, 218.4722137451172], \\\"flags\\\": {}, \\\"order\\\": 8, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"clip\\\", \\\"type\\\": \\\"CLIP\\\", \\\"link\\\": 6}, {\\\"name\\\": \\\"trigger_words\\\", \\\"shape\\\": 7, \\\"type\\\": \\\"STRING\\\", \\\"link\\\": 5}], \\\"outputs\\\": [{\\\"name\\\": \\\"CONDITIONING\\\", \\\"type\\\": \\\"CONDITIONING\\\", \\\"links\\\": [10]}, {\\\"name\\\": \\\"PROMPT\\\", \\\"type\\\": \\\"STRING\\\", \\\"links\\\": null}], \\\"title\\\": \\\"Positive Prompt\\\", \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfyui-lora-manager\\\", \\\"ver\\\": \\\"0.9.11\\\", \\\"Node name for S&R\\\": \\\"Prompt (LoraManager)\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\\\"], \\\"color\\\": \\\"#232\\\", \\\"bgcolor\\\": \\\"#353\\\"}], \\\"links\\\": [[1, 1, 0, 3, 0, \\\"MODEL\\\"], [2, 2, 0, 4, 1, \\\"CLIP\\\"], [3, 3, 0, 4, 0, \\\"MODEL\\\"], [4, 4, 2, 5, 0, \\\"string\\\"], [5, 5, 0, 6, 1, \\\"STRING\\\"], [6, 4, 1, 6, 0, \\\"CLIP\\\"], [7, 4, 1, 7, 0, \\\"CLIP\\\"], [8, 8, 0, 9, 3, \\\"LATENT\\\"], [9, 7, 0, 9, 2, \\\"CONDITIONING\\\"], [10, 6, 0, 9, 1, \\\"CONDITIONING\\\"], [11, 4, 0, 9, 0, \\\"MODEL\\\"], [12, 9, 0, 11, 0, \\\"LATENT\\\"], [13, 10, 0, 11, 1, \\\"VAE\\\"], [14, 11, 0, 12, 0, \\\"IMAGE\\\"], [16, 12, 0, 14, 0, \\\"*\\\"], [17, 14, 0, 13, 0, \\\"IMAGE\\\"], [18, 13, 0, 15, 0, \\\"*\\\"], [19, 15, 0, 16, 0, \\\"IMAGE\\\"], [20, 16, 0, 17, 0, \\\"IMAGE\\\"]], \\\"groups\\\": [], \\\"config\\\": {}, \\\"extra\\\": {\\\"ue_links\\\": [], \\\"ds\\\": {\\\"scale\\\": 1.1918176537727498, \\\"offset\\\": [-1355.9629921033777, -133.6231487335197]}, \\\"workflowRendererVersion\\\": \\\"LG\\\", \\\"links_added_by_ue\\\": [], \\\"frontendVersion\\\": \\\"1.34.9\\\"}, \\\"version\\\": 0.4, \\\"seed_widgets\\\": {\\\"9\\\": 0}}\"\n}",
+      "__imagePlusMeta": {
+        "parameters": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\n<lora:CuteRetro_ZIT_v2:0.8>\nNegative prompt: bad ugly bad hands bad feet\nSteps: 9, Sampler: Euler simple, CFG scale: 1.0, Seed: 105918980883001, Size: 1024x1024, Lora hashes: \"CuteRetro_ZIT_v2: cfc2865cfd\"",
+        "workflow": "{\"id\": \"277d5330-9a37-4a5b-913a-aff3332bdfee\", \"revision\": 0, \"last_node_id\": 17, \"last_link_id\": 20, \"nodes\": [{\"id\": 2, \"type\": \"CLIPLoaderGGUF\", \"pos\": [578.0695335629132, 81.1074011737234], \"size\": [354.26389058430993, 150.9999974568685], \"flags\": {}, \"order\": 0, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"CLIP\", \"type\": \"CLIP\", \"links\": [2]}], \"properties\": {\"cnr_id\": \"ComfyUI-GGUF\", \"ver\": \"d3e14efda6bb891de0406d2debffcb07e88d4231\", \"Node name for S&R\": \"CLIPLoaderGGUF\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"Qwen3-4B-UD-Q6_K_XL.gguf\", \"lumina2\"]}, {\"id\": 3, \"type\": \"ModelSamplingAuraFlow\", \"pos\": [989.3715525555219, -107.04488805407404], \"size\": [225, 68.33333333333334], \"flags\": {}, \"order\": 4, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 1}], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [3]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"ModelSamplingAuraFlow\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [1.73]}, {\"id\": 5, \"type\": \"TriggerWord Toggle (LoraManager)\", \"pos\": [1410.341091282844, 102.64049823721763], \"size\": [273.8666595458984, 248], \"flags\": {}, \"order\": 7, \"mode\": 0, \"inputs\": [{\"name\": \"trigger_words\", \"shape\": 7, \"type\": \"string\", \"link\": 4}], \"outputs\": [{\"name\": \"filtered_trigger_words\", \"type\": \"STRING\", \"links\": [5]}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"TriggerWord Toggle (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [true, true, false, [{\"text\": \"masterpiece, best quality, anime coloring, anime screencap,\", \"active\": true, \"strength\": null, \"highlighted\": false}], \"masterpiece, best quality, anime coloring, anime screencap,\"]}, {\"id\": 7, \"type\": \"CLIPTextEncode\", \"pos\": [1847.273042726062, 408.1006810070729], \"size\": [210, 34], \"flags\": {\"collapsed\": true}, \"order\": 6, \"mode\": 0, \"inputs\": [{\"name\": \"clip\", \"type\": \"CLIP\", \"link\": 7}], \"outputs\": [{\"name\": \"CONDITIONING\", \"type\": \"CONDITIONING\", \"links\": [9]}], \"title\": \"Negative Prompt\", \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"CLIPTextEncode\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"bad ugly bad hands bad feet\"], \"color\": \"#322\", \"bgcolor\": \"#533\", \"shape\": 2}, {\"id\": 9, \"type\": \"KSampler\", \"pos\": [2253.5540632962975, 229.3160370870469], \"size\": [225, 583.3333333333334], \"flags\": {}, \"order\": 9, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 11}, {\"name\": \"positive\", \"type\": \"CONDITIONING\", \"link\": 10}, {\"name\": \"negative\", \"type\": \"CONDITIONING\", \"link\": 9}, {\"name\": \"latent_image\", \"type\": \"LATENT\", \"link\": 8}], \"outputs\": [{\"name\": \"LATENT\", \"type\": \"LATENT\", \"links\": [12]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"KSampler\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [105918980883001, \"randomize\", 9, 1, \"euler\", \"simple\", 1]}, {\"id\": 10, \"type\": \"VAELoader\", \"pos\": [2262.4470827664904, 93.24787864068625], \"size\": [213.73611450195312, 68.33333333333334], \"flags\": {}, \"order\": 1, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"VAE\", \"type\": \"VAE\", \"links\": [13]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"VAELoader\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"ae.safetensors\"]}, {\"id\": 11, \"type\": \"VAEDecode\", \"pos\": [2526.589706156884, 100.4172376521125], \"size\": [187.5, 60], \"flags\": {}, \"order\": 10, \"mode\": 0, \"inputs\": [{\"name\": \"samples\", \"type\": \"LATENT\", \"link\": 12}, {\"name\": \"vae\", \"type\": \"VAE\", \"link\": 13}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [14]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"VAEDecode\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": []}, {\"id\": 12, \"type\": \"FastLaplacianSharpen\", \"pos\": [2767.1508376604534, 100.4172376521125], \"size\": [225.6944529215495, 68.33333333333334], \"flags\": {}, \"order\": 11, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 14}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [16]}], \"properties\": {\"aux_id\": \"vrgamegirl19/comfyui-vrgamedevgirl\", \"ver\": \"80d994e4296a352b76982cf548845c274a42eaf2\", \"Node name for S&R\": \"FastLaplacianSharpen\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [0.4]}, {\"id\": 13, \"type\": \"FastFilmGrain\", \"pos\": [2763.054048013794, 334.8581818446806], \"size\": [292.5555674235026, 125], \"flags\": {}, \"order\": 13, \"mode\": 4, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 17}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [18]}], \"properties\": {\"aux_id\": \"vrgamegirl19/comfyui-vrgamedevgirl\", \"ver\": \"80d994e4296a352b76982cf548845c274a42eaf2\", \"Node name for S&R\": \"FastFilmGrain\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [0.012, 0.39, 4]}, {\"id\": 14, \"type\": \"Fast Bypasser (rgthree)\", \"pos\": [2765.1024428371234, 207.90785720780818], \"size\": [287.81944274902344, 88.33333333333334], \"flags\": {}, \"order\": 12, \"mode\": 0, \"inputs\": [{\"dir\": 3, \"name\": \"\\ud83c\\udf00 Fast Laplacian Sharpen\", \"type\": \"*\", \"link\": 16}, {\"dir\": 3, \"name\": \"\", \"type\": \"*\", \"link\": null}], \"outputs\": [{\"dir\": 4, \"name\": \"OPT_CONNECTION\", \"type\": \"*\", \"links\": [17]}], \"properties\": {\"toggleRestriction\": \"default\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}}, {\"id\": 15, \"type\": \"Fast Bypasser (rgthree)\", \"pos\": [2765.1024428371234, 507.8723471070283], \"size\": [259.1527811686198, 88.33333333333334], \"flags\": {}, \"order\": 14, \"mode\": 0, \"inputs\": [{\"dir\": 3, \"name\": \"\\ud83c\\udf9e\\ufe0f Fast Film Grain\", \"type\": \"*\", \"link\": 18}, {\"dir\": 3, \"name\": \"\", \"type\": \"*\", \"link\": null}], \"outputs\": [{\"dir\": 4, \"name\": \"OPT_CONNECTION\", \"type\": \"*\", \"links\": [19]}], \"properties\": {\"toggleRestriction\": \"default\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}}, {\"id\": 16, \"type\": \"Save Image (LoraManager)\", \"pos\": [3157.5193712220853, 371.30456566410135], \"size\": [349.76389567057294, 223.3055623372396], \"flags\": {}, \"order\": 15, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 19}], \"outputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"links\": [20]}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Save Image (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"ComfyUI\", \"png\", false, 100, true, true]}, {\"id\": 1, \"type\": \"UnetLoaderGGUF\", \"pos\": [580.0929083570272, -106.72013081928313], \"size\": [351.2361145019531, 145.43055216471356], \"flags\": {}, \"order\": 2, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [1]}], \"properties\": {\"cnr_id\": \"ComfyUI-GGUF\", \"ver\": \"d3e14efda6bb891de0406d2debffcb07e88d4231\", \"Node name for S&R\": \"UnetLoaderGGUF\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"Zimage\\\\z_image_turbo-Q6_K.gguf\"]}, {\"id\": 4, \"type\": \"Lora Loader (LoraManager)\", \"pos\": [948.7035305158696, 90.32515500847936], \"size\": [397.87501017252606, 485.41666666666674], \"flags\": {}, \"order\": 5, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 3}, {\"name\": \"clip\", \"shape\": 7, \"type\": \"CLIP\", \"link\": 2}, {\"name\": \"lora_stack\", \"shape\": 7, \"type\": \"LORA_STACK\", \"link\": null}], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [11]}, {\"name\": \"CLIP\", \"type\": \"CLIP\", \"links\": [6, 7]}, {\"name\": \"trigger_words\", \"type\": \"STRING\", \"links\": [4]}, {\"name\": \"loaded_loras\", \"type\": \"STRING\", \"links\": null}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Lora Loader (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"<lora:CuteRetro_ZIT_v2:0.80>\", [{\"name\": \"CuteRetro_ZIT_v2\", \"strength\": \"0.80\", \"active\": true, \"expanded\": false, \"clipStrength\": \"0.80\"}]]}, {\"id\": 17, \"type\": \"PreviewImage\", \"pos\": [3579.259969977156, 370.2946065816392], \"size\": [933.0832926432292, 1285.111083984375], \"flags\": {}, \"order\": 16, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 20}], \"outputs\": [], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"PreviewImage\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [], \"color\": \"#233\", \"bgcolor\": \"#355\"}, {\"id\": 8, \"type\": \"EmptySD3LatentImage\", \"pos\": [1431.774245450843, 366.1336300282571], \"size\": [225, 125], \"flags\": {}, \"order\": 3, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"LATENT\", \"type\": \"LATENT\", \"links\": [8]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"EmptySD3LatentImage\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [1024, 1024, 1]}, {\"id\": 6, \"type\": \"Prompt (LoraManager)\", \"pos\": [1740.706746297219, 82.9809302352777], \"size\": [420.0416564941406, 218.4722137451172], \"flags\": {}, \"order\": 8, \"mode\": 0, \"inputs\": [{\"name\": \"clip\", \"type\": \"CLIP\", \"link\": 6}, {\"name\": \"trigger_words\", \"shape\": 7, \"type\": \"STRING\", \"link\": 5}], \"outputs\": [{\"name\": \"CONDITIONING\", \"type\": \"CONDITIONING\", \"links\": [10]}, {\"name\": \"PROMPT\", \"type\": \"STRING\", \"links\": null}], \"title\": \"Positive Prompt\", \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Prompt (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\"], \"color\": \"#232\", \"bgcolor\": \"#353\"}], \"links\": [[1, 1, 0, 3, 0, \"MODEL\"], [2, 2, 0, 4, 1, \"CLIP\"], [3, 3, 0, 4, 0, \"MODEL\"], [4, 4, 2, 5, 0, \"string\"], [5, 5, 0, 6, 1, \"STRING\"], [6, 4, 1, 6, 0, \"CLIP\"], [7, 4, 1, 7, 0, \"CLIP\"], [8, 8, 0, 9, 3, \"LATENT\"], [9, 7, 0, 9, 2, \"CONDITIONING\"], [10, 6, 0, 9, 1, \"CONDITIONING\"], [11, 4, 0, 9, 0, \"MODEL\"], [12, 9, 0, 11, 0, \"LATENT\"], [13, 10, 0, 11, 1, \"VAE\"], [14, 11, 0, 12, 0, \"IMAGE\"], [16, 12, 0, 14, 0, \"*\"], [17, 14, 0, 13, 0, \"IMAGE\"], [18, 13, 0, 15, 0, \"*\"], [19, 15, 0, 16, 0, \"IMAGE\"], [20, 16, 0, 17, 0, \"IMAGE\"]], \"groups\": [], \"config\": {}, \"extra\": {\"ue_links\": [], \"ds\": {\"scale\": 1.1918176537727498, \"offset\": [-1355.9629921033777, -133.6231487335197]}, \"workflowRendererVersion\": \"LG\", \"links_added_by_ue\": [], \"frontendVersion\": \"1.34.9\"}, \"version\": 0.4, \"seed_widgets\": {\"9\": 0}}",
+        "comfy_workflow": {
+          "id": "277d5330-9a37-4a5b-913a-aff3332bdfee",
+          "revision": 0,
+          "last_node_id": 17,
+          "last_link_id": 20,
+          "nodes": [
+            {
+              "id": 2,
+              "type": "CLIPLoaderGGUF",
+              "pos": [
+                578.0695335629132,
+                81.1074011737234
+              ],
+              "size": [
+                354.26389058430993,
+                150.9999974568685
+              ],
+              "flags": {},
+              "order": 0,
+              "mode": 0,
+              "inputs": [],
+              "outputs": [
+                {
+                  "name": "CLIP",
+                  "type": "CLIP",
+                  "links": [
+                    2
+                  ]
+                }
+              ],
+              "properties": {
+                "cnr_id": "ComfyUI-GGUF",
+                "ver": "d3e14efda6bb891de0406d2debffcb07e88d4231",
+                "Node name for S&R": "CLIPLoaderGGUF",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                "Qwen3-4B-UD-Q6_K_XL.gguf",
+                "lumina2"
+              ]
+            },
+            {
+              "id": 3,
+              "type": "ModelSamplingAuraFlow",
+              "pos": [
+                989.3715525555219,
+                -107.04488805407404
+              ],
+              "size": [
+                225,
+                68.33333333333334
+              ],
+              "flags": {},
+              "order": 4,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "model",
+                  "type": "MODEL",
+                  "link": 1
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "MODEL",
+                  "type": "MODEL",
+                  "links": [
+                    3
+                  ]
+                }
+              ],
+              "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.3.76",
+                "Node name for S&R": "ModelSamplingAuraFlow",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                1.73
+              ]
+            },
+            {
+              "id": 5,
+              "type": "TriggerWord Toggle (LoraManager)",
+              "pos": [
+                1410.341091282844,
+                102.64049823721763
+              ],
+              "size": [
+                273.8666595458984,
+                248
+              ],
+              "flags": {},
+              "order": 7,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "trigger_words",
+                  "shape": 7,
+                  "type": "string",
+                  "link": 4
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "filtered_trigger_words",
+                  "type": "STRING",
+                  "links": [
+                    5
+                  ]
+                }
+              ],
+              "properties": {
+                "cnr_id": "comfyui-lora-manager",
+                "ver": "0.9.11",
+                "Node name for S&R": "TriggerWord Toggle (LoraManager)",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                true,
+                true,
+                false,
+                [
+                  {
+                    "text": "masterpiece, best quality, anime coloring, anime screencap,",
+                    "active": true,
+                    "strength": null,
+                    "highlighted": false
+                  }
+                ],
+                "masterpiece, best quality, anime coloring, anime screencap,"
+              ]
+            },
+            {
+              "id": 7,
+              "type": "CLIPTextEncode",
+              "pos": [
+                1847.273042726062,
+                408.1006810070729
+              ],
+              "size": [
+                210,
+                34
+              ],
+              "flags": {
+                "collapsed": true
+              },
+              "order": 6,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "clip",
+                  "type": "CLIP",
+                  "link": 7
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "CONDITIONING",
+                  "type": "CONDITIONING",
+                  "links": [
+                    9
+                  ]
+                }
+              ],
+              "title": "Negative Prompt",
+              "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.3.76",
+                "Node name for S&R": "CLIPTextEncode",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                "bad ugly bad hands bad feet"
+              ],
+              "color": "#322",
+              "bgcolor": "#533",
+              "shape": 2
+            },
+            {
+              "id": 9,
+              "type": "KSampler",
+              "pos": [
+                2253.5540632962975,
+                229.3160370870469
+              ],
+              "size": [
+                225,
+                583.3333333333334
+              ],
+              "flags": {},
+              "order": 9,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "model",
+                  "type": "MODEL",
+                  "link": 11
+                },
+                {
+                  "name": "positive",
+                  "type": "CONDITIONING",
+                  "link": 10
+                },
+                {
+                  "name": "negative",
+                  "type": "CONDITIONING",
+                  "link": 9
+                },
+                {
+                  "name": "latent_image",
+                  "type": "LATENT",
+                  "link": 8
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "LATENT",
+                  "type": "LATENT",
+                  "links": [
+                    12
+                  ]
+                }
+              ],
+              "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.3.76",
+                "Node name for S&R": "KSampler",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                105918980883001,
+                "randomize",
+                9,
+                1,
+                "euler",
+                "simple",
+                1
+              ]
+            },
+            {
+              "id": 10,
+              "type": "VAELoader",
+              "pos": [
+                2262.4470827664904,
+                93.24787864068625
+              ],
+              "size": [
+                213.73611450195312,
+                68.33333333333334
+              ],
+              "flags": {},
+              "order": 1,
+              "mode": 0,
+              "inputs": [],
+              "outputs": [
+                {
+                  "name": "VAE",
+                  "type": "VAE",
+                  "links": [
+                    13
+                  ]
+                }
+              ],
+              "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.3.76",
+                "Node name for S&R": "VAELoader",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                "ae.safetensors"
+              ]
+            },
+            {
+              "id": 11,
+              "type": "VAEDecode",
+              "pos": [
+                2526.589706156884,
+                100.4172376521125
+              ],
+              "size": [
+                187.5,
+                60
+              ],
+              "flags": {},
+              "order": 10,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "samples",
+                  "type": "LATENT",
+                  "link": 12
+                },
+                {
+                  "name": "vae",
+                  "type": "VAE",
+                  "link": 13
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "IMAGE",
+                  "type": "IMAGE",
+                  "links": [
+                    14
+                  ]
+                }
+              ],
+              "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.3.76",
+                "Node name for S&R": "VAEDecode",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": []
+            },
+            {
+              "id": 12,
+              "type": "FastLaplacianSharpen",
+              "pos": [
+                2767.1508376604534,
+                100.4172376521125
+              ],
+              "size": [
+                225.6944529215495,
+                68.33333333333334
+              ],
+              "flags": {},
+              "order": 11,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "images",
+                  "type": "IMAGE",
+                  "link": 14
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "IMAGE",
+                  "type": "IMAGE",
+                  "links": [
+                    16
+                  ]
+                }
+              ],
+              "properties": {
+                "aux_id": "vrgamegirl19/comfyui-vrgamedevgirl",
+                "ver": "80d994e4296a352b76982cf548845c274a42eaf2",
+                "Node name for S&R": "FastLaplacianSharpen",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                0.4
+              ]
+            },
+            {
+              "id": 13,
+              "type": "FastFilmGrain",
+              "pos": [
+                2763.054048013794,
+                334.8581818446806
+              ],
+              "size": [
+                292.5555674235026,
+                125
+              ],
+              "flags": {},
+              "order": 13,
+              "mode": 4,
+              "inputs": [
+                {
+                  "name": "images",
+                  "type": "IMAGE",
+                  "link": 17
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "IMAGE",
+                  "type": "IMAGE",
+                  "links": [
+                    18
+                  ]
+                }
+              ],
+              "properties": {
+                "aux_id": "vrgamegirl19/comfyui-vrgamedevgirl",
+                "ver": "80d994e4296a352b76982cf548845c274a42eaf2",
+                "Node name for S&R": "FastFilmGrain",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                0.012,
+                0.39,
+                4
+              ]
+            },
+            {
+              "id": 14,
+              "type": "Fast Bypasser (rgthree)",
+              "pos": [
+                2765.1024428371234,
+                207.90785720780818
+              ],
+              "size": [
+                287.81944274902344,
+                88.33333333333334
+              ],
+              "flags": {},
+              "order": 12,
+              "mode": 0,
+              "inputs": [
+                {
+                  "dir": 3,
+                  "name": "🌀 Fast Laplacian Sharpen",
+                  "type": "*",
+                  "link": 16
+                },
+                {
+                  "dir": 3,
+                  "name": "",
+                  "type": "*",
+                  "link": null
+                }
+              ],
+              "outputs": [
+                {
+                  "dir": 4,
+                  "name": "OPT_CONNECTION",
+                  "type": "*",
+                  "links": [
+                    17
+                  ]
+                }
+              ],
+              "properties": {
+                "toggleRestriction": "default",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              }
+            },
+            {
+              "id": 15,
+              "type": "Fast Bypasser (rgthree)",
+              "pos": [
+                2765.1024428371234,
+                507.8723471070283
+              ],
+              "size": [
+                259.1527811686198,
+                88.33333333333334
+              ],
+              "flags": {},
+              "order": 14,
+              "mode": 0,
+              "inputs": [
+                {
+                  "dir": 3,
+                  "name": "🎞️ Fast Film Grain",
+                  "type": "*",
+                  "link": 18
+                },
+                {
+                  "dir": 3,
+                  "name": "",
+                  "type": "*",
+                  "link": null
+                }
+              ],
+              "outputs": [
+                {
+                  "dir": 4,
+                  "name": "OPT_CONNECTION",
+                  "type": "*",
+                  "links": [
+                    19
+                  ]
+                }
+              ],
+              "properties": {
+                "toggleRestriction": "default",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              }
+            },
+            {
+              "id": 16,
+              "type": "Save Image (LoraManager)",
+              "pos": [
+                3157.5193712220853,
+                371.30456566410135
+              ],
+              "size": [
+                349.76389567057294,
+                223.3055623372396
+              ],
+              "flags": {},
+              "order": 15,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "images",
+                  "type": "IMAGE",
+                  "link": 19
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "images",
+                  "type": "IMAGE",
+                  "links": [
+                    20
+                  ]
+                }
+              ],
+              "properties": {
+                "cnr_id": "comfyui-lora-manager",
+                "ver": "0.9.11",
+                "Node name for S&R": "Save Image (LoraManager)",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                "ComfyUI",
+                "png",
+                false,
+                100,
+                true,
+                true
+              ]
+            },
+            {
+              "id": 1,
+              "type": "UnetLoaderGGUF",
+              "pos": [
+                580.0929083570272,
+                -106.72013081928313
+              ],
+              "size": [
+                351.2361145019531,
+                145.43055216471356
+              ],
+              "flags": {},
+              "order": 2,
+              "mode": 0,
+              "inputs": [],
+              "outputs": [
+                {
+                  "name": "MODEL",
+                  "type": "MODEL",
+                  "links": [
+                    1
+                  ]
+                }
+              ],
+              "properties": {
+                "cnr_id": "ComfyUI-GGUF",
+                "ver": "d3e14efda6bb891de0406d2debffcb07e88d4231",
+                "Node name for S&R": "UnetLoaderGGUF",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                "Zimage\\z_image_turbo-Q6_K.gguf"
+              ]
+            },
+            {
+              "id": 4,
+              "type": "Lora Loader (LoraManager)",
+              "pos": [
+                948.7035305158696,
+                90.32515500847936
+              ],
+              "size": [
+                397.87501017252606,
+                485.41666666666674
+              ],
+              "flags": {},
+              "order": 5,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "model",
+                  "type": "MODEL",
+                  "link": 3
+                },
+                {
+                  "name": "clip",
+                  "shape": 7,
+                  "type": "CLIP",
+                  "link": 2
+                },
+                {
+                  "name": "lora_stack",
+                  "shape": 7,
+                  "type": "LORA_STACK",
+                  "link": null
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "MODEL",
+                  "type": "MODEL",
+                  "links": [
+                    11
+                  ]
+                },
+                {
+                  "name": "CLIP",
+                  "type": "CLIP",
+                  "links": [
+                    6,
+                    7
+                  ]
+                },
+                {
+                  "name": "trigger_words",
+                  "type": "STRING",
+                  "links": [
+                    4
+                  ]
+                },
+                {
+                  "name": "loaded_loras",
+                  "type": "STRING",
+                  "links": null
+                }
+              ],
+              "properties": {
+                "cnr_id": "comfyui-lora-manager",
+                "ver": "0.9.11",
+                "Node name for S&R": "Lora Loader (LoraManager)",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                "<lora:CuteRetro_ZIT_v2:0.80>",
+                [
+                  {
+                    "name": "CuteRetro_ZIT_v2",
+                    "strength": "0.80",
+                    "active": true,
+                    "expanded": false,
+                    "clipStrength": "0.80"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": 17,
+              "type": "PreviewImage",
+              "pos": [
+                3579.259969977156,
+                370.2946065816392
+              ],
+              "size": [
+                933.0832926432292,
+                1285.111083984375
+              ],
+              "flags": {},
+              "order": 16,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "images",
+                  "type": "IMAGE",
+                  "link": 20
+                }
+              ],
+              "outputs": [],
+              "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.3.76",
+                "Node name for S&R": "PreviewImage",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [],
+              "color": "#233",
+              "bgcolor": "#355"
+            },
+            {
+              "id": 8,
+              "type": "EmptySD3LatentImage",
+              "pos": [
+                1431.774245450843,
+                366.1336300282571
+              ],
+              "size": [
+                225,
+                125
+              ],
+              "flags": {},
+              "order": 3,
+              "mode": 0,
+              "inputs": [],
+              "outputs": [
+                {
+                  "name": "LATENT",
+                  "type": "LATENT",
+                  "links": [
+                    8
+                  ]
+                }
+              ],
+              "properties": {
+                "cnr_id": "comfy-core",
+                "ver": "0.3.76",
+                "Node name for S&R": "EmptySD3LatentImage",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                1024,
+                1024,
+                1
+              ]
+            },
+            {
+              "id": 6,
+              "type": "Prompt (LoraManager)",
+              "pos": [
+                1740.706746297219,
+                82.9809302352777
+              ],
+              "size": [
+                420.0416564941406,
+                218.4722137451172
+              ],
+              "flags": {},
+              "order": 8,
+              "mode": 0,
+              "inputs": [
+                {
+                  "name": "clip",
+                  "type": "CLIP",
+                  "link": 6
+                },
+                {
+                  "name": "trigger_words",
+                  "shape": 7,
+                  "type": "STRING",
+                  "link": 5
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "CONDITIONING",
+                  "type": "CONDITIONING",
+                  "links": [
+                    10
+                  ]
+                },
+                {
+                  "name": "PROMPT",
+                  "type": "STRING",
+                  "links": null
+                }
+              ],
+              "title": "Positive Prompt",
+              "properties": {
+                "cnr_id": "comfyui-lora-manager",
+                "ver": "0.9.11",
+                "Node name for S&R": "Prompt (LoraManager)",
+                "ue_properties": {
+                  "widget_ue_connectable": {},
+                  "input_ue_unconnectable": {},
+                  "version": "7.5.1"
+                }
+              },
+              "widgets_values": [
+                "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene"
+              ],
+              "color": "#232",
+              "bgcolor": "#353"
+            }
+          ],
+          "links": [
+            [
+              1,
+              1,
+              0,
+              3,
+              0,
+              "MODEL"
+            ],
+            [
+              2,
+              2,
+              0,
+              4,
+              1,
+              "CLIP"
+            ],
+            [
+              3,
+              3,
+              0,
+              4,
+              0,
+              "MODEL"
+            ],
+            [
+              4,
+              4,
+              2,
+              5,
+              0,
+              "string"
+            ],
+            [
+              5,
+              5,
+              0,
+              6,
+              1,
+              "STRING"
+            ],
+            [
+              6,
+              4,
+              1,
+              6,
+              0,
+              "CLIP"
+            ],
+            [
+              7,
+              4,
+              1,
+              7,
+              0,
+              "CLIP"
+            ],
+            [
+              8,
+              8,
+              0,
+              9,
+              3,
+              "LATENT"
+            ],
+            [
+              9,
+              7,
+              0,
+              9,
+              2,
+              "CONDITIONING"
+            ],
+            [
+              10,
+              6,
+              0,
+              9,
+              1,
+              "CONDITIONING"
+            ],
+            [
+              11,
+              4,
+              0,
+              9,
+              0,
+              "MODEL"
+            ],
+            [
+              12,
+              9,
+              0,
+              11,
+              0,
+              "LATENT"
+            ],
+            [
+              13,
+              10,
+              0,
+              11,
+              1,
+              "VAE"
+            ],
+            [
+              14,
+              11,
+              0,
+              12,
+              0,
+              "IMAGE"
+            ],
+            [
+              16,
+              12,
+              0,
+              14,
+              0,
+              "*"
+            ],
+            [
+              17,
+              14,
+              0,
+              13,
+              0,
+              "IMAGE"
+            ],
+            [
+              18,
+              13,
+              0,
+              15,
+              0,
+              "*"
+            ],
+            [
+              19,
+              15,
+              0,
+              16,
+              0,
+              "IMAGE"
+            ],
+            [
+              20,
+              16,
+              0,
+              17,
+              0,
+              "IMAGE"
+            ]
+          ],
+          "groups": [],
+          "config": {},
+          "extra": {
+            "ue_links": [],
+            "ds": {
+              "scale": 1.1918176537727498,
+              "offset": [
+                -1355.9629921033777,
+                -133.6231487335197
+              ]
+            },
+            "workflowRendererVersion": "LG",
+            "links_added_by_ue": [],
+            "frontendVersion": "1.34.9"
+          },
+          "version": 0.4,
+          "seed_widgets": {
+            "9": 0
+          }
+        },
+        "prompt": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene",
+        "negativePrompt": "bad ugly bad hands bad feet",
+        "clip_name": "Qwen3-4B-UD-Q6_K_XL.gguf",
+        "clip_type": "lumina2",
+        "seed": "105918980883001",
+        "steps": "9",
+        "cfgScale": "1",
+        "sampler": "euler",
+        "scheduler": "simple",
+        "denoise": "1",
+        "vae_name": "ae.safetensors",
+        "unet_name": "Zimage\\z_image_turbo-Q6_K.gguf",
+        "raw_parameters": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\n<lora:CuteRetro_ZIT_v2:0.8>\nNegative prompt: bad ugly bad hands bad feet\nSteps: 9, Sampler: Euler simple, CFG scale: 1.0, Seed: 105918980883001, Size: 1024x1024, Lora hashes: \"CuteRetro_ZIT_v2: cfc2865cfd\"",
+        "size": "1024x1024",
+        "Lora hashes": "\"CuteRetro_ZIT_v2: cfc2865cfd\"",
+        "Model": "Zimage\\z_image_turbo-Q6_K.gguf"
+      },
+      "__imagePlusRawMeta": {
+        "parameters": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\n<lora:CuteRetro_ZIT_v2:0.8>\nNegative prompt: bad ugly bad hands bad feet\nSteps: 9, Sampler: Euler simple, CFG scale: 1.0, Seed: 105918980883001, Size: 1024x1024, Lora hashes: \"CuteRetro_ZIT_v2: cfc2865cfd\"",
+        "workflow": "{\"id\": \"277d5330-9a37-4a5b-913a-aff3332bdfee\", \"revision\": 0, \"last_node_id\": 17, \"last_link_id\": 20, \"nodes\": [{\"id\": 2, \"type\": \"CLIPLoaderGGUF\", \"pos\": [578.0695335629132, 81.1074011737234], \"size\": [354.26389058430993, 150.9999974568685], \"flags\": {}, \"order\": 0, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"CLIP\", \"type\": \"CLIP\", \"links\": [2]}], \"properties\": {\"cnr_id\": \"ComfyUI-GGUF\", \"ver\": \"d3e14efda6bb891de0406d2debffcb07e88d4231\", \"Node name for S&R\": \"CLIPLoaderGGUF\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"Qwen3-4B-UD-Q6_K_XL.gguf\", \"lumina2\"]}, {\"id\": 3, \"type\": \"ModelSamplingAuraFlow\", \"pos\": [989.3715525555219, -107.04488805407404], \"size\": [225, 68.33333333333334], \"flags\": {}, \"order\": 4, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 1}], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [3]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"ModelSamplingAuraFlow\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [1.73]}, {\"id\": 5, \"type\": \"TriggerWord Toggle (LoraManager)\", \"pos\": [1410.341091282844, 102.64049823721763], \"size\": [273.8666595458984, 248], \"flags\": {}, \"order\": 7, \"mode\": 0, \"inputs\": [{\"name\": \"trigger_words\", \"shape\": 7, \"type\": \"string\", \"link\": 4}], \"outputs\": [{\"name\": \"filtered_trigger_words\", \"type\": \"STRING\", \"links\": [5]}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"TriggerWord Toggle (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [true, true, false, [{\"text\": \"masterpiece, best quality, anime coloring, anime screencap,\", \"active\": true, \"strength\": null, \"highlighted\": false}], \"masterpiece, best quality, anime coloring, anime screencap,\"]}, {\"id\": 7, \"type\": \"CLIPTextEncode\", \"pos\": [1847.273042726062, 408.1006810070729], \"size\": [210, 34], \"flags\": {\"collapsed\": true}, \"order\": 6, \"mode\": 0, \"inputs\": [{\"name\": \"clip\", \"type\": \"CLIP\", \"link\": 7}], \"outputs\": [{\"name\": \"CONDITIONING\", \"type\": \"CONDITIONING\", \"links\": [9]}], \"title\": \"Negative Prompt\", \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"CLIPTextEncode\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"bad ugly bad hands bad feet\"], \"color\": \"#322\", \"bgcolor\": \"#533\", \"shape\": 2}, {\"id\": 9, \"type\": \"KSampler\", \"pos\": [2253.5540632962975, 229.3160370870469], \"size\": [225, 583.3333333333334], \"flags\": {}, \"order\": 9, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 11}, {\"name\": \"positive\", \"type\": \"CONDITIONING\", \"link\": 10}, {\"name\": \"negative\", \"type\": \"CONDITIONING\", \"link\": 9}, {\"name\": \"latent_image\", \"type\": \"LATENT\", \"link\": 8}], \"outputs\": [{\"name\": \"LATENT\", \"type\": \"LATENT\", \"links\": [12]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"KSampler\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [105918980883001, \"randomize\", 9, 1, \"euler\", \"simple\", 1]}, {\"id\": 10, \"type\": \"VAELoader\", \"pos\": [2262.4470827664904, 93.24787864068625], \"size\": [213.73611450195312, 68.33333333333334], \"flags\": {}, \"order\": 1, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"VAE\", \"type\": \"VAE\", \"links\": [13]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"VAELoader\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"ae.safetensors\"]}, {\"id\": 11, \"type\": \"VAEDecode\", \"pos\": [2526.589706156884, 100.4172376521125], \"size\": [187.5, 60], \"flags\": {}, \"order\": 10, \"mode\": 0, \"inputs\": [{\"name\": \"samples\", \"type\": \"LATENT\", \"link\": 12}, {\"name\": \"vae\", \"type\": \"VAE\", \"link\": 13}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [14]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"VAEDecode\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": []}, {\"id\": 12, \"type\": \"FastLaplacianSharpen\", \"pos\": [2767.1508376604534, 100.4172376521125], \"size\": [225.6944529215495, 68.33333333333334], \"flags\": {}, \"order\": 11, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 14}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [16]}], \"properties\": {\"aux_id\": \"vrgamegirl19/comfyui-vrgamedevgirl\", \"ver\": \"80d994e4296a352b76982cf548845c274a42eaf2\", \"Node name for S&R\": \"FastLaplacianSharpen\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [0.4]}, {\"id\": 13, \"type\": \"FastFilmGrain\", \"pos\": [2763.054048013794, 334.8581818446806], \"size\": [292.5555674235026, 125], \"flags\": {}, \"order\": 13, \"mode\": 4, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 17}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [18]}], \"properties\": {\"aux_id\": \"vrgamegirl19/comfyui-vrgamedevgirl\", \"ver\": \"80d994e4296a352b76982cf548845c274a42eaf2\", \"Node name for S&R\": \"FastFilmGrain\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [0.012, 0.39, 4]}, {\"id\": 14, \"type\": \"Fast Bypasser (rgthree)\", \"pos\": [2765.1024428371234, 207.90785720780818], \"size\": [287.81944274902344, 88.33333333333334], \"flags\": {}, \"order\": 12, \"mode\": 0, \"inputs\": [{\"dir\": 3, \"name\": \"\\ud83c\\udf00 Fast Laplacian Sharpen\", \"type\": \"*\", \"link\": 16}, {\"dir\": 3, \"name\": \"\", \"type\": \"*\", \"link\": null}], \"outputs\": [{\"dir\": 4, \"name\": \"OPT_CONNECTION\", \"type\": \"*\", \"links\": [17]}], \"properties\": {\"toggleRestriction\": \"default\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}}, {\"id\": 15, \"type\": \"Fast Bypasser (rgthree)\", \"pos\": [2765.1024428371234, 507.8723471070283], \"size\": [259.1527811686198, 88.33333333333334], \"flags\": {}, \"order\": 14, \"mode\": 0, \"inputs\": [{\"dir\": 3, \"name\": \"\\ud83c\\udf9e\\ufe0f Fast Film Grain\", \"type\": \"*\", \"link\": 18}, {\"dir\": 3, \"name\": \"\", \"type\": \"*\", \"link\": null}], \"outputs\": [{\"dir\": 4, \"name\": \"OPT_CONNECTION\", \"type\": \"*\", \"links\": [19]}], \"properties\": {\"toggleRestriction\": \"default\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}}, {\"id\": 16, \"type\": \"Save Image (LoraManager)\", \"pos\": [3157.5193712220853, 371.30456566410135], \"size\": [349.76389567057294, 223.3055623372396], \"flags\": {}, \"order\": 15, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 19}], \"outputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"links\": [20]}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Save Image (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"ComfyUI\", \"png\", false, 100, true, true]}, {\"id\": 1, \"type\": \"UnetLoaderGGUF\", \"pos\": [580.0929083570272, -106.72013081928313], \"size\": [351.2361145019531, 145.43055216471356], \"flags\": {}, \"order\": 2, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [1]}], \"properties\": {\"cnr_id\": \"ComfyUI-GGUF\", \"ver\": \"d3e14efda6bb891de0406d2debffcb07e88d4231\", \"Node name for S&R\": \"UnetLoaderGGUF\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"Zimage\\\\z_image_turbo-Q6_K.gguf\"]}, {\"id\": 4, \"type\": \"Lora Loader (LoraManager)\", \"pos\": [948.7035305158696, 90.32515500847936], \"size\": [397.87501017252606, 485.41666666666674], \"flags\": {}, \"order\": 5, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 3}, {\"name\": \"clip\", \"shape\": 7, \"type\": \"CLIP\", \"link\": 2}, {\"name\": \"lora_stack\", \"shape\": 7, \"type\": \"LORA_STACK\", \"link\": null}], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [11]}, {\"name\": \"CLIP\", \"type\": \"CLIP\", \"links\": [6, 7]}, {\"name\": \"trigger_words\", \"type\": \"STRING\", \"links\": [4]}, {\"name\": \"loaded_loras\", \"type\": \"STRING\", \"links\": null}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Lora Loader (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"<lora:CuteRetro_ZIT_v2:0.80>\", [{\"name\": \"CuteRetro_ZIT_v2\", \"strength\": \"0.80\", \"active\": true, \"expanded\": false, \"clipStrength\": \"0.80\"}]]}, {\"id\": 17, \"type\": \"PreviewImage\", \"pos\": [3579.259969977156, 370.2946065816392], \"size\": [933.0832926432292, 1285.111083984375], \"flags\": {}, \"order\": 16, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 20}], \"outputs\": [], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"PreviewImage\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [], \"color\": \"#233\", \"bgcolor\": \"#355\"}, {\"id\": 8, \"type\": \"EmptySD3LatentImage\", \"pos\": [1431.774245450843, 366.1336300282571], \"size\": [225, 125], \"flags\": {}, \"order\": 3, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"LATENT\", \"type\": \"LATENT\", \"links\": [8]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"EmptySD3LatentImage\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [1024, 1024, 1]}, {\"id\": 6, \"type\": \"Prompt (LoraManager)\", \"pos\": [1740.706746297219, 82.9809302352777], \"size\": [420.0416564941406, 218.4722137451172], \"flags\": {}, \"order\": 8, \"mode\": 0, \"inputs\": [{\"name\": \"clip\", \"type\": \"CLIP\", \"link\": 6}, {\"name\": \"trigger_words\", \"shape\": 7, \"type\": \"STRING\", \"link\": 5}], \"outputs\": [{\"name\": \"CONDITIONING\", \"type\": \"CONDITIONING\", \"links\": [10]}, {\"name\": \"PROMPT\", \"type\": \"STRING\", \"links\": null}], \"title\": \"Positive Prompt\", \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Prompt (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\"], \"color\": \"#232\", \"bgcolor\": \"#353\"}], \"links\": [[1, 1, 0, 3, 0, \"MODEL\"], [2, 2, 0, 4, 1, \"CLIP\"], [3, 3, 0, 4, 0, \"MODEL\"], [4, 4, 2, 5, 0, \"string\"], [5, 5, 0, 6, 1, \"STRING\"], [6, 4, 1, 6, 0, \"CLIP\"], [7, 4, 1, 7, 0, \"CLIP\"], [8, 8, 0, 9, 3, \"LATENT\"], [9, 7, 0, 9, 2, \"CONDITIONING\"], [10, 6, 0, 9, 1, \"CONDITIONING\"], [11, 4, 0, 9, 0, \"MODEL\"], [12, 9, 0, 11, 0, \"LATENT\"], [13, 10, 0, 11, 1, \"VAE\"], [14, 11, 0, 12, 0, \"IMAGE\"], [16, 12, 0, 14, 0, \"*\"], [17, 14, 0, 13, 0, \"IMAGE\"], [18, 13, 0, 15, 0, \"*\"], [19, 15, 0, 16, 0, \"IMAGE\"], [20, 16, 0, 17, 0, \"IMAGE\"]], \"groups\": [], \"config\": {}, \"extra\": {\"ue_links\": [], \"ds\": {\"scale\": 1.1918176537727498, \"offset\": [-1355.9629921033777, -133.6231487335197]}, \"workflowRendererVersion\": \"LG\", \"links_added_by_ue\": [], \"frontendVersion\": \"1.34.9\"}, \"version\": 0.4, \"seed_widgets\": {\"9\": 0}}"
+      },
+      "__imagePlusPositive": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene",
+      "__imagePlusNegative": "bad ugly bad hands bad feet",
+      "__imagePlusImageWidth": 1024,
+      "__imagePlusImageHeight": 1024,
+      "__imagePlusImageSizeText": "1024 Ã— 1024 px",
+      "__imagePlusActiveTab": "filtered",
+      "extensions": {
+        "__imagePlusSource": "local",
+        "__imagePlusSourceUrl": "blob:http://127.0.0.1:8188/e620461e-e1e1-4751-96f7-0af65a0b20a0",
+        "__imagePlusPageUrl": "",
+        "__imagePlusFileName": "GTHam.png",
+        "__imagePlusLocalUploadId": "4b81f58e583e4a23a46ace78faf9069f",
+        "__imagePlusBackendUrl": "4b81f58e583e4a23a46ace78faf9069f",
+        "__imagePlusFetchUrl": "https://civitai.com/images/12654388",
+        "__imagePlusFilteredInfo": "Source: Local image\nFile: GTHam.png\nImage Size: 1024 Ã— 1024 px\nModel: Zimage\\z image turbo Q6 K.gguf\nVAE: ae.safetensors\nCLIP: Qwen3-4B-UD-Q6_K_XL.gguf\nSteps: 9\nCFG: 1\nSampler: euler\nScheduler: simple\nSeed: 105918980883001\nDenoise: 1",
+        "__imagePlusRawMetadata": "{\n  \"parameters\": \"a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\\n<lora:CuteRetro_ZIT_v2:0.8>\\nNegative prompt: bad ugly bad hands bad feet\\nSteps: 9, Sampler: Euler simple, CFG scale: 1.0, Seed: 105918980883001, Size: 1024x1024, Lora hashes: \\\"CuteRetro_ZIT_v2: cfc2865cfd\\\"\",\n  \"workflow\": \"{\\\"id\\\": \\\"277d5330-9a37-4a5b-913a-aff3332bdfee\\\", \\\"revision\\\": 0, \\\"last_node_id\\\": 17, \\\"last_link_id\\\": 20, \\\"nodes\\\": [{\\\"id\\\": 2, \\\"type\\\": \\\"CLIPLoaderGGUF\\\", \\\"pos\\\": [578.0695335629132, 81.1074011737234], \\\"size\\\": [354.26389058430993, 150.9999974568685], \\\"flags\\\": {}, \\\"order\\\": 0, \\\"mode\\\": 0, \\\"inputs\\\": [], \\\"outputs\\\": [{\\\"name\\\": \\\"CLIP\\\", \\\"type\\\": \\\"CLIP\\\", \\\"links\\\": [2]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"ComfyUI-GGUF\\\", \\\"ver\\\": \\\"d3e14efda6bb891de0406d2debffcb07e88d4231\\\", \\\"Node name for S&R\\\": \\\"CLIPLoaderGGUF\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"Qwen3-4B-UD-Q6_K_XL.gguf\\\", \\\"lumina2\\\"]}, {\\\"id\\\": 3, \\\"type\\\": \\\"ModelSamplingAuraFlow\\\", \\\"pos\\\": [989.3715525555219, -107.04488805407404], \\\"size\\\": [225, 68.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 4, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"model\\\", \\\"type\\\": \\\"MODEL\\\", \\\"link\\\": 1}], \\\"outputs\\\": [{\\\"name\\\": \\\"MODEL\\\", \\\"type\\\": \\\"MODEL\\\", \\\"links\\\": [3]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"ModelSamplingAuraFlow\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [1.73]}, {\\\"id\\\": 5, \\\"type\\\": \\\"TriggerWord Toggle (LoraManager)\\\", \\\"pos\\\": [1410.341091282844, 102.64049823721763], \\\"size\\\": [273.8666595458984, 248], \\\"flags\\\": {}, \\\"order\\\": 7, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"trigger_words\\\", \\\"shape\\\": 7, \\\"type\\\": \\\"string\\\", \\\"link\\\": 4}], \\\"outputs\\\": [{\\\"name\\\": \\\"filtered_trigger_words\\\", \\\"type\\\": \\\"STRING\\\", \\\"links\\\": [5]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfyui-lora-manager\\\", \\\"ver\\\": \\\"0.9.11\\\", \\\"Node name for S&R\\\": \\\"TriggerWord Toggle (LoraManager)\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [true, true, false, [{\\\"text\\\": \\\"masterpiece, best quality, anime coloring, anime screencap,\\\", \\\"active\\\": true, \\\"strength\\\": null, \\\"highlighted\\\": false}], \\\"masterpiece, best quality, anime coloring, anime screencap,\\\"]}, {\\\"id\\\": 7, \\\"type\\\": \\\"CLIPTextEncode\\\", \\\"pos\\\": [1847.273042726062, 408.1006810070729], \\\"size\\\": [210, 34], \\\"flags\\\": {\\\"collapsed\\\": true}, \\\"order\\\": 6, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"clip\\\", \\\"type\\\": \\\"CLIP\\\", \\\"link\\\": 7}], \\\"outputs\\\": [{\\\"name\\\": \\\"CONDITIONING\\\", \\\"type\\\": \\\"CONDITIONING\\\", \\\"links\\\": [9]}], \\\"title\\\": \\\"Negative Prompt\\\", \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"CLIPTextEncode\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"bad ugly bad hands bad feet\\\"], \\\"color\\\": \\\"#322\\\", \\\"bgcolor\\\": \\\"#533\\\", \\\"shape\\\": 2}, {\\\"id\\\": 9, \\\"type\\\": \\\"KSampler\\\", \\\"pos\\\": [2253.5540632962975, 229.3160370870469], \\\"size\\\": [225, 583.3333333333334], \\\"flags\\\": {}, \\\"order\\\": 9, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"model\\\", \\\"type\\\": \\\"MODEL\\\", \\\"link\\\": 11}, {\\\"name\\\": \\\"positive\\\", \\\"type\\\": \\\"CONDITIONING\\\", \\\"link\\\": 10}, {\\\"name\\\": \\\"negative\\\", \\\"type\\\": \\\"CONDITIONING\\\", \\\"link\\\": 9}, {\\\"name\\\": \\\"latent_image\\\", \\\"type\\\": \\\"LATENT\\\", \\\"link\\\": 8}], \\\"outputs\\\": [{\\\"name\\\": \\\"LATENT\\\", \\\"type\\\": \\\"LATENT\\\", \\\"links\\\": [12]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"KSampler\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [105918980883001, \\\"randomize\\\", 9, 1, \\\"euler\\\", \\\"simple\\\", 1]}, {\\\"id\\\": 10, \\\"type\\\": \\\"VAELoader\\\", \\\"pos\\\": [2262.4470827664904, 93.24787864068625], \\\"size\\\": [213.73611450195312, 68.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 1, \\\"mode\\\": 0, \\\"inputs\\\": [], \\\"outputs\\\": [{\\\"name\\\": \\\"VAE\\\", \\\"type\\\": \\\"VAE\\\", \\\"links\\\": [13]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"VAELoader\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"ae.safetensors\\\"]}, {\\\"id\\\": 11, \\\"type\\\": \\\"VAEDecode\\\", \\\"pos\\\": [2526.589706156884, 100.4172376521125], \\\"size\\\": [187.5, 60], \\\"flags\\\": {}, \\\"order\\\": 10, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"samples\\\", \\\"type\\\": \\\"LATENT\\\", \\\"link\\\": 12}, {\\\"name\\\": \\\"vae\\\", \\\"type\\\": \\\"VAE\\\", \\\"link\\\": 13}], \\\"outputs\\\": [{\\\"name\\\": \\\"IMAGE\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"links\\\": [14]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"VAEDecode\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": []}, {\\\"id\\\": 12, \\\"type\\\": \\\"FastLaplacianSharpen\\\", \\\"pos\\\": [2767.1508376604534, 100.4172376521125], \\\"size\\\": [225.6944529215495, 68.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 11, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"link\\\": 14}], \\\"outputs\\\": [{\\\"name\\\": \\\"IMAGE\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"links\\\": [16]}], \\\"properties\\\": {\\\"aux_id\\\": \\\"vrgamegirl19/comfyui-vrgamedevgirl\\\", \\\"ver\\\": \\\"80d994e4296a352b76982cf548845c274a42eaf2\\\", \\\"Node name for S&R\\\": \\\"FastLaplacianSharpen\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [0.4]}, {\\\"id\\\": 13, \\\"type\\\": \\\"FastFilmGrain\\\", \\\"pos\\\": [2763.054048013794, 334.8581818446806], \\\"size\\\": [292.5555674235026, 125], \\\"flags\\\": {}, \\\"order\\\": 13, \\\"mode\\\": 4, \\\"inputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"link\\\": 17}], \\\"outputs\\\": [{\\\"name\\\": \\\"IMAGE\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"links\\\": [18]}], \\\"properties\\\": {\\\"aux_id\\\": \\\"vrgamegirl19/comfyui-vrgamedevgirl\\\", \\\"ver\\\": \\\"80d994e4296a352b76982cf548845c274a42eaf2\\\", \\\"Node name for S&R\\\": \\\"FastFilmGrain\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [0.012, 0.39, 4]}, {\\\"id\\\": 14, \\\"type\\\": \\\"Fast Bypasser (rgthree)\\\", \\\"pos\\\": [2765.1024428371234, 207.90785720780818], \\\"size\\\": [287.81944274902344, 88.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 12, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"dir\\\": 3, \\\"name\\\": \\\"\\\\ud83c\\\\udf00 Fast Laplacian Sharpen\\\", \\\"type\\\": \\\"*\\\", \\\"link\\\": 16}, {\\\"dir\\\": 3, \\\"name\\\": \\\"\\\", \\\"type\\\": \\\"*\\\", \\\"link\\\": null}], \\\"outputs\\\": [{\\\"dir\\\": 4, \\\"name\\\": \\\"OPT_CONNECTION\\\", \\\"type\\\": \\\"*\\\", \\\"links\\\": [17]}], \\\"properties\\\": {\\\"toggleRestriction\\\": \\\"default\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}}, {\\\"id\\\": 15, \\\"type\\\": \\\"Fast Bypasser (rgthree)\\\", \\\"pos\\\": [2765.1024428371234, 507.8723471070283], \\\"size\\\": [259.1527811686198, 88.33333333333334], \\\"flags\\\": {}, \\\"order\\\": 14, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"dir\\\": 3, \\\"name\\\": \\\"\\\\ud83c\\\\udf9e\\\\ufe0f Fast Film Grain\\\", \\\"type\\\": \\\"*\\\", \\\"link\\\": 18}, {\\\"dir\\\": 3, \\\"name\\\": \\\"\\\", \\\"type\\\": \\\"*\\\", \\\"link\\\": null}], \\\"outputs\\\": [{\\\"dir\\\": 4, \\\"name\\\": \\\"OPT_CONNECTION\\\", \\\"type\\\": \\\"*\\\", \\\"links\\\": [19]}], \\\"properties\\\": {\\\"toggleRestriction\\\": \\\"default\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}}, {\\\"id\\\": 16, \\\"type\\\": \\\"Save Image (LoraManager)\\\", \\\"pos\\\": [3157.5193712220853, 371.30456566410135], \\\"size\\\": [349.76389567057294, 223.3055623372396], \\\"flags\\\": {}, \\\"order\\\": 15, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"link\\\": 19}], \\\"outputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"links\\\": [20]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfyui-lora-manager\\\", \\\"ver\\\": \\\"0.9.11\\\", \\\"Node name for S&R\\\": \\\"Save Image (LoraManager)\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"ComfyUI\\\", \\\"png\\\", false, 100, true, true]}, {\\\"id\\\": 1, \\\"type\\\": \\\"UnetLoaderGGUF\\\", \\\"pos\\\": [580.0929083570272, -106.72013081928313], \\\"size\\\": [351.2361145019531, 145.43055216471356], \\\"flags\\\": {}, \\\"order\\\": 2, \\\"mode\\\": 0, \\\"inputs\\\": [], \\\"outputs\\\": [{\\\"name\\\": \\\"MODEL\\\", \\\"type\\\": \\\"MODEL\\\", \\\"links\\\": [1]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"ComfyUI-GGUF\\\", \\\"ver\\\": \\\"d3e14efda6bb891de0406d2debffcb07e88d4231\\\", \\\"Node name for S&R\\\": \\\"UnetLoaderGGUF\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"Zimage\\\\\\\\z_image_turbo-Q6_K.gguf\\\"]}, {\\\"id\\\": 4, \\\"type\\\": \\\"Lora Loader (LoraManager)\\\", \\\"pos\\\": [948.7035305158696, 90.32515500847936], \\\"size\\\": [397.87501017252606, 485.41666666666674], \\\"flags\\\": {}, \\\"order\\\": 5, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"model\\\", \\\"type\\\": \\\"MODEL\\\", \\\"link\\\": 3}, {\\\"name\\\": \\\"clip\\\", \\\"shape\\\": 7, \\\"type\\\": \\\"CLIP\\\", \\\"link\\\": 2}, {\\\"name\\\": \\\"lora_stack\\\", \\\"shape\\\": 7, \\\"type\\\": \\\"LORA_STACK\\\", \\\"link\\\": null}], \\\"outputs\\\": [{\\\"name\\\": \\\"MODEL\\\", \\\"type\\\": \\\"MODEL\\\", \\\"links\\\": [11]}, {\\\"name\\\": \\\"CLIP\\\", \\\"type\\\": \\\"CLIP\\\", \\\"links\\\": [6, 7]}, {\\\"name\\\": \\\"trigger_words\\\", \\\"type\\\": \\\"STRING\\\", \\\"links\\\": [4]}, {\\\"name\\\": \\\"loaded_loras\\\", \\\"type\\\": \\\"STRING\\\", \\\"links\\\": null}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfyui-lora-manager\\\", \\\"ver\\\": \\\"0.9.11\\\", \\\"Node name for S&R\\\": \\\"Lora Loader (LoraManager)\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"<lora:CuteRetro_ZIT_v2:0.80>\\\", [{\\\"name\\\": \\\"CuteRetro_ZIT_v2\\\", \\\"strength\\\": \\\"0.80\\\", \\\"active\\\": true, \\\"expanded\\\": false, \\\"clipStrength\\\": \\\"0.80\\\"}]]}, {\\\"id\\\": 17, \\\"type\\\": \\\"PreviewImage\\\", \\\"pos\\\": [3579.259969977156, 370.2946065816392], \\\"size\\\": [933.0832926432292, 1285.111083984375], \\\"flags\\\": {}, \\\"order\\\": 16, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"images\\\", \\\"type\\\": \\\"IMAGE\\\", \\\"link\\\": 20}], \\\"outputs\\\": [], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"PreviewImage\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [], \\\"color\\\": \\\"#233\\\", \\\"bgcolor\\\": \\\"#355\\\"}, {\\\"id\\\": 8, \\\"type\\\": \\\"EmptySD3LatentImage\\\", \\\"pos\\\": [1431.774245450843, 366.1336300282571], \\\"size\\\": [225, 125], \\\"flags\\\": {}, \\\"order\\\": 3, \\\"mode\\\": 0, \\\"inputs\\\": [], \\\"outputs\\\": [{\\\"name\\\": \\\"LATENT\\\", \\\"type\\\": \\\"LATENT\\\", \\\"links\\\": [8]}], \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfy-core\\\", \\\"ver\\\": \\\"0.3.76\\\", \\\"Node name for S&R\\\": \\\"EmptySD3LatentImage\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [1024, 1024, 1]}, {\\\"id\\\": 6, \\\"type\\\": \\\"Prompt (LoraManager)\\\", \\\"pos\\\": [1740.706746297219, 82.9809302352777], \\\"size\\\": [420.0416564941406, 218.4722137451172], \\\"flags\\\": {}, \\\"order\\\": 8, \\\"mode\\\": 0, \\\"inputs\\\": [{\\\"name\\\": \\\"clip\\\", \\\"type\\\": \\\"CLIP\\\", \\\"link\\\": 6}, {\\\"name\\\": \\\"trigger_words\\\", \\\"shape\\\": 7, \\\"type\\\": \\\"STRING\\\", \\\"link\\\": 5}], \\\"outputs\\\": [{\\\"name\\\": \\\"CONDITIONING\\\", \\\"type\\\": \\\"CONDITIONING\\\", \\\"links\\\": [10]}, {\\\"name\\\": \\\"PROMPT\\\", \\\"type\\\": \\\"STRING\\\", \\\"links\\\": null}], \\\"title\\\": \\\"Positive Prompt\\\", \\\"properties\\\": {\\\"cnr_id\\\": \\\"comfyui-lora-manager\\\", \\\"ver\\\": \\\"0.9.11\\\", \\\"Node name for S&R\\\": \\\"Prompt (LoraManager)\\\", \\\"ue_properties\\\": {\\\"widget_ue_connectable\\\": {}, \\\"input_ue_unconnectable\\\": {}, \\\"version\\\": \\\"7.5.1\\\"}}, \\\"widgets_values\\\": [\\\"a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\\\"], \\\"color\\\": \\\"#232\\\", \\\"bgcolor\\\": \\\"#353\\\"}], \\\"links\\\": [[1, 1, 0, 3, 0, \\\"MODEL\\\"], [2, 2, 0, 4, 1, \\\"CLIP\\\"], [3, 3, 0, 4, 0, \\\"MODEL\\\"], [4, 4, 2, 5, 0, \\\"string\\\"], [5, 5, 0, 6, 1, \\\"STRING\\\"], [6, 4, 1, 6, 0, \\\"CLIP\\\"], [7, 4, 1, 7, 0, \\\"CLIP\\\"], [8, 8, 0, 9, 3, \\\"LATENT\\\"], [9, 7, 0, 9, 2, \\\"CONDITIONING\\\"], [10, 6, 0, 9, 1, \\\"CONDITIONING\\\"], [11, 4, 0, 9, 0, \\\"MODEL\\\"], [12, 9, 0, 11, 0, \\\"LATENT\\\"], [13, 10, 0, 11, 1, \\\"VAE\\\"], [14, 11, 0, 12, 0, \\\"IMAGE\\\"], [16, 12, 0, 14, 0, \\\"*\\\"], [17, 14, 0, 13, 0, \\\"IMAGE\\\"], [18, 13, 0, 15, 0, \\\"*\\\"], [19, 15, 0, 16, 0, \\\"IMAGE\\\"], [20, 16, 0, 17, 0, \\\"IMAGE\\\"]], \\\"groups\\\": [], \\\"config\\\": {}, \\\"extra\\\": {\\\"ue_links\\\": [], \\\"ds\\\": {\\\"scale\\\": 1.1918176537727498, \\\"offset\\\": [-1355.9629921033777, -133.6231487335197]}, \\\"workflowRendererVersion\\\": \\\"LG\\\", \\\"links_added_by_ue\\\": [], \\\"frontendVersion\\\": \\\"1.34.9\\\"}, \\\"version\\\": 0.4, \\\"seed_widgets\\\": {\\\"9\\\": 0}}\"\n}",
+        "__imagePlusMeta": {
+          "parameters": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\n<lora:CuteRetro_ZIT_v2:0.8>\nNegative prompt: bad ugly bad hands bad feet\nSteps: 9, Sampler: Euler simple, CFG scale: 1.0, Seed: 105918980883001, Size: 1024x1024, Lora hashes: \"CuteRetro_ZIT_v2: cfc2865cfd\"",
+          "workflow": "{\"id\": \"277d5330-9a37-4a5b-913a-aff3332bdfee\", \"revision\": 0, \"last_node_id\": 17, \"last_link_id\": 20, \"nodes\": [{\"id\": 2, \"type\": \"CLIPLoaderGGUF\", \"pos\": [578.0695335629132, 81.1074011737234], \"size\": [354.26389058430993, 150.9999974568685], \"flags\": {}, \"order\": 0, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"CLIP\", \"type\": \"CLIP\", \"links\": [2]}], \"properties\": {\"cnr_id\": \"ComfyUI-GGUF\", \"ver\": \"d3e14efda6bb891de0406d2debffcb07e88d4231\", \"Node name for S&R\": \"CLIPLoaderGGUF\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"Qwen3-4B-UD-Q6_K_XL.gguf\", \"lumina2\"]}, {\"id\": 3, \"type\": \"ModelSamplingAuraFlow\", \"pos\": [989.3715525555219, -107.04488805407404], \"size\": [225, 68.33333333333334], \"flags\": {}, \"order\": 4, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 1}], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [3]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"ModelSamplingAuraFlow\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [1.73]}, {\"id\": 5, \"type\": \"TriggerWord Toggle (LoraManager)\", \"pos\": [1410.341091282844, 102.64049823721763], \"size\": [273.8666595458984, 248], \"flags\": {}, \"order\": 7, \"mode\": 0, \"inputs\": [{\"name\": \"trigger_words\", \"shape\": 7, \"type\": \"string\", \"link\": 4}], \"outputs\": [{\"name\": \"filtered_trigger_words\", \"type\": \"STRING\", \"links\": [5]}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"TriggerWord Toggle (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [true, true, false, [{\"text\": \"masterpiece, best quality, anime coloring, anime screencap,\", \"active\": true, \"strength\": null, \"highlighted\": false}], \"masterpiece, best quality, anime coloring, anime screencap,\"]}, {\"id\": 7, \"type\": \"CLIPTextEncode\", \"pos\": [1847.273042726062, 408.1006810070729], \"size\": [210, 34], \"flags\": {\"collapsed\": true}, \"order\": 6, \"mode\": 0, \"inputs\": [{\"name\": \"clip\", \"type\": \"CLIP\", \"link\": 7}], \"outputs\": [{\"name\": \"CONDITIONING\", \"type\": \"CONDITIONING\", \"links\": [9]}], \"title\": \"Negative Prompt\", \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"CLIPTextEncode\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"bad ugly bad hands bad feet\"], \"color\": \"#322\", \"bgcolor\": \"#533\", \"shape\": 2}, {\"id\": 9, \"type\": \"KSampler\", \"pos\": [2253.5540632962975, 229.3160370870469], \"size\": [225, 583.3333333333334], \"flags\": {}, \"order\": 9, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 11}, {\"name\": \"positive\", \"type\": \"CONDITIONING\", \"link\": 10}, {\"name\": \"negative\", \"type\": \"CONDITIONING\", \"link\": 9}, {\"name\": \"latent_image\", \"type\": \"LATENT\", \"link\": 8}], \"outputs\": [{\"name\": \"LATENT\", \"type\": \"LATENT\", \"links\": [12]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"KSampler\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [105918980883001, \"randomize\", 9, 1, \"euler\", \"simple\", 1]}, {\"id\": 10, \"type\": \"VAELoader\", \"pos\": [2262.4470827664904, 93.24787864068625], \"size\": [213.73611450195312, 68.33333333333334], \"flags\": {}, \"order\": 1, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"VAE\", \"type\": \"VAE\", \"links\": [13]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"VAELoader\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"ae.safetensors\"]}, {\"id\": 11, \"type\": \"VAEDecode\", \"pos\": [2526.589706156884, 100.4172376521125], \"size\": [187.5, 60], \"flags\": {}, \"order\": 10, \"mode\": 0, \"inputs\": [{\"name\": \"samples\", \"type\": \"LATENT\", \"link\": 12}, {\"name\": \"vae\", \"type\": \"VAE\", \"link\": 13}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [14]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"VAEDecode\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": []}, {\"id\": 12, \"type\": \"FastLaplacianSharpen\", \"pos\": [2767.1508376604534, 100.4172376521125], \"size\": [225.6944529215495, 68.33333333333334], \"flags\": {}, \"order\": 11, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 14}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [16]}], \"properties\": {\"aux_id\": \"vrgamegirl19/comfyui-vrgamedevgirl\", \"ver\": \"80d994e4296a352b76982cf548845c274a42eaf2\", \"Node name for S&R\": \"FastLaplacianSharpen\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [0.4]}, {\"id\": 13, \"type\": \"FastFilmGrain\", \"pos\": [2763.054048013794, 334.8581818446806], \"size\": [292.5555674235026, 125], \"flags\": {}, \"order\": 13, \"mode\": 4, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 17}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [18]}], \"properties\": {\"aux_id\": \"vrgamegirl19/comfyui-vrgamedevgirl\", \"ver\": \"80d994e4296a352b76982cf548845c274a42eaf2\", \"Node name for S&R\": \"FastFilmGrain\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [0.012, 0.39, 4]}, {\"id\": 14, \"type\": \"Fast Bypasser (rgthree)\", \"pos\": [2765.1024428371234, 207.90785720780818], \"size\": [287.81944274902344, 88.33333333333334], \"flags\": {}, \"order\": 12, \"mode\": 0, \"inputs\": [{\"dir\": 3, \"name\": \"\\ud83c\\udf00 Fast Laplacian Sharpen\", \"type\": \"*\", \"link\": 16}, {\"dir\": 3, \"name\": \"\", \"type\": \"*\", \"link\": null}], \"outputs\": [{\"dir\": 4, \"name\": \"OPT_CONNECTION\", \"type\": \"*\", \"links\": [17]}], \"properties\": {\"toggleRestriction\": \"default\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}}, {\"id\": 15, \"type\": \"Fast Bypasser (rgthree)\", \"pos\": [2765.1024428371234, 507.8723471070283], \"size\": [259.1527811686198, 88.33333333333334], \"flags\": {}, \"order\": 14, \"mode\": 0, \"inputs\": [{\"dir\": 3, \"name\": \"\\ud83c\\udf9e\\ufe0f Fast Film Grain\", \"type\": \"*\", \"link\": 18}, {\"dir\": 3, \"name\": \"\", \"type\": \"*\", \"link\": null}], \"outputs\": [{\"dir\": 4, \"name\": \"OPT_CONNECTION\", \"type\": \"*\", \"links\": [19]}], \"properties\": {\"toggleRestriction\": \"default\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}}, {\"id\": 16, \"type\": \"Save Image (LoraManager)\", \"pos\": [3157.5193712220853, 371.30456566410135], \"size\": [349.76389567057294, 223.3055623372396], \"flags\": {}, \"order\": 15, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 19}], \"outputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"links\": [20]}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Save Image (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"ComfyUI\", \"png\", false, 100, true, true]}, {\"id\": 1, \"type\": \"UnetLoaderGGUF\", \"pos\": [580.0929083570272, -106.72013081928313], \"size\": [351.2361145019531, 145.43055216471356], \"flags\": {}, \"order\": 2, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [1]}], \"properties\": {\"cnr_id\": \"ComfyUI-GGUF\", \"ver\": \"d3e14efda6bb891de0406d2debffcb07e88d4231\", \"Node name for S&R\": \"UnetLoaderGGUF\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"Zimage\\\\z_image_turbo-Q6_K.gguf\"]}, {\"id\": 4, \"type\": \"Lora Loader (LoraManager)\", \"pos\": [948.7035305158696, 90.32515500847936], \"size\": [397.87501017252606, 485.41666666666674], \"flags\": {}, \"order\": 5, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 3}, {\"name\": \"clip\", \"shape\": 7, \"type\": \"CLIP\", \"link\": 2}, {\"name\": \"lora_stack\", \"shape\": 7, \"type\": \"LORA_STACK\", \"link\": null}], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [11]}, {\"name\": \"CLIP\", \"type\": \"CLIP\", \"links\": [6, 7]}, {\"name\": \"trigger_words\", \"type\": \"STRING\", \"links\": [4]}, {\"name\": \"loaded_loras\", \"type\": \"STRING\", \"links\": null}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Lora Loader (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"<lora:CuteRetro_ZIT_v2:0.80>\", [{\"name\": \"CuteRetro_ZIT_v2\", \"strength\": \"0.80\", \"active\": true, \"expanded\": false, \"clipStrength\": \"0.80\"}]]}, {\"id\": 17, \"type\": \"PreviewImage\", \"pos\": [3579.259969977156, 370.2946065816392], \"size\": [933.0832926432292, 1285.111083984375], \"flags\": {}, \"order\": 16, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 20}], \"outputs\": [], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"PreviewImage\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [], \"color\": \"#233\", \"bgcolor\": \"#355\"}, {\"id\": 8, \"type\": \"EmptySD3LatentImage\", \"pos\": [1431.774245450843, 366.1336300282571], \"size\": [225, 125], \"flags\": {}, \"order\": 3, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"LATENT\", \"type\": \"LATENT\", \"links\": [8]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"EmptySD3LatentImage\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [1024, 1024, 1]}, {\"id\": 6, \"type\": \"Prompt (LoraManager)\", \"pos\": [1740.706746297219, 82.9809302352777], \"size\": [420.0416564941406, 218.4722137451172], \"flags\": {}, \"order\": 8, \"mode\": 0, \"inputs\": [{\"name\": \"clip\", \"type\": \"CLIP\", \"link\": 6}, {\"name\": \"trigger_words\", \"shape\": 7, \"type\": \"STRING\", \"link\": 5}], \"outputs\": [{\"name\": \"CONDITIONING\", \"type\": \"CONDITIONING\", \"links\": [10]}, {\"name\": \"PROMPT\", \"type\": \"STRING\", \"links\": null}], \"title\": \"Positive Prompt\", \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Prompt (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\"], \"color\": \"#232\", \"bgcolor\": \"#353\"}], \"links\": [[1, 1, 0, 3, 0, \"MODEL\"], [2, 2, 0, 4, 1, \"CLIP\"], [3, 3, 0, 4, 0, \"MODEL\"], [4, 4, 2, 5, 0, \"string\"], [5, 5, 0, 6, 1, \"STRING\"], [6, 4, 1, 6, 0, \"CLIP\"], [7, 4, 1, 7, 0, \"CLIP\"], [8, 8, 0, 9, 3, \"LATENT\"], [9, 7, 0, 9, 2, \"CONDITIONING\"], [10, 6, 0, 9, 1, \"CONDITIONING\"], [11, 4, 0, 9, 0, \"MODEL\"], [12, 9, 0, 11, 0, \"LATENT\"], [13, 10, 0, 11, 1, \"VAE\"], [14, 11, 0, 12, 0, \"IMAGE\"], [16, 12, 0, 14, 0, \"*\"], [17, 14, 0, 13, 0, \"IMAGE\"], [18, 13, 0, 15, 0, \"*\"], [19, 15, 0, 16, 0, \"IMAGE\"], [20, 16, 0, 17, 0, \"IMAGE\"]], \"groups\": [], \"config\": {}, \"extra\": {\"ue_links\": [], \"ds\": {\"scale\": 1.1918176537727498, \"offset\": [-1355.9629921033777, -133.6231487335197]}, \"workflowRendererVersion\": \"LG\", \"links_added_by_ue\": [], \"frontendVersion\": \"1.34.9\"}, \"version\": 0.4, \"seed_widgets\": {\"9\": 0}}",
+          "comfy_workflow": {
+            "id": "277d5330-9a37-4a5b-913a-aff3332bdfee",
+            "revision": 0,
+            "last_node_id": 17,
+            "last_link_id": 20,
+            "nodes": [
+              {
+                "id": 2,
+                "type": "CLIPLoaderGGUF",
+                "pos": [
+                  578.0695335629132,
+                  81.1074011737234
+                ],
+                "size": [
+                  354.26389058430993,
+                  150.9999974568685
+                ],
+                "flags": {},
+                "order": 0,
+                "mode": 0,
+                "inputs": [],
+                "outputs": [
+                  {
+                    "name": "CLIP",
+                    "type": "CLIP",
+                    "links": [
+                      2
+                    ]
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "ComfyUI-GGUF",
+                  "ver": "d3e14efda6bb891de0406d2debffcb07e88d4231",
+                  "Node name for S&R": "CLIPLoaderGGUF",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  "Qwen3-4B-UD-Q6_K_XL.gguf",
+                  "lumina2"
+                ]
+              },
+              {
+                "id": 3,
+                "type": "ModelSamplingAuraFlow",
+                "pos": [
+                  989.3715525555219,
+                  -107.04488805407404
+                ],
+                "size": [
+                  225,
+                  68.33333333333334
+                ],
+                "flags": {},
+                "order": 4,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "model",
+                    "type": "MODEL",
+                    "link": 1
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "MODEL",
+                    "type": "MODEL",
+                    "links": [
+                      3
+                    ]
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "comfy-core",
+                  "ver": "0.3.76",
+                  "Node name for S&R": "ModelSamplingAuraFlow",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  1.73
+                ]
+              },
+              {
+                "id": 5,
+                "type": "TriggerWord Toggle (LoraManager)",
+                "pos": [
+                  1410.341091282844,
+                  102.64049823721763
+                ],
+                "size": [
+                  273.8666595458984,
+                  248
+                ],
+                "flags": {},
+                "order": 7,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "trigger_words",
+                    "shape": 7,
+                    "type": "string",
+                    "link": 4
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "filtered_trigger_words",
+                    "type": "STRING",
+                    "links": [
+                      5
+                    ]
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "comfyui-lora-manager",
+                  "ver": "0.9.11",
+                  "Node name for S&R": "TriggerWord Toggle (LoraManager)",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  true,
+                  true,
+                  false,
+                  [
+                    {
+                      "text": "masterpiece, best quality, anime coloring, anime screencap,",
+                      "active": true,
+                      "strength": null,
+                      "highlighted": false
+                    }
+                  ],
+                  "masterpiece, best quality, anime coloring, anime screencap,"
+                ]
+              },
+              {
+                "id": 7,
+                "type": "CLIPTextEncode",
+                "pos": [
+                  1847.273042726062,
+                  408.1006810070729
+                ],
+                "size": [
+                  210,
+                  34
+                ],
+                "flags": {
+                  "collapsed": true
+                },
+                "order": 6,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "clip",
+                    "type": "CLIP",
+                    "link": 7
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "CONDITIONING",
+                    "type": "CONDITIONING",
+                    "links": [
+                      9
+                    ]
+                  }
+                ],
+                "title": "Negative Prompt",
+                "properties": {
+                  "cnr_id": "comfy-core",
+                  "ver": "0.3.76",
+                  "Node name for S&R": "CLIPTextEncode",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  "bad ugly bad hands bad feet"
+                ],
+                "color": "#322",
+                "bgcolor": "#533",
+                "shape": 2
+              },
+              {
+                "id": 9,
+                "type": "KSampler",
+                "pos": [
+                  2253.5540632962975,
+                  229.3160370870469
+                ],
+                "size": [
+                  225,
+                  583.3333333333334
+                ],
+                "flags": {},
+                "order": 9,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "model",
+                    "type": "MODEL",
+                    "link": 11
+                  },
+                  {
+                    "name": "positive",
+                    "type": "CONDITIONING",
+                    "link": 10
+                  },
+                  {
+                    "name": "negative",
+                    "type": "CONDITIONING",
+                    "link": 9
+                  },
+                  {
+                    "name": "latent_image",
+                    "type": "LATENT",
+                    "link": 8
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "LATENT",
+                    "type": "LATENT",
+                    "links": [
+                      12
+                    ]
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "comfy-core",
+                  "ver": "0.3.76",
+                  "Node name for S&R": "KSampler",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  105918980883001,
+                  "randomize",
+                  9,
+                  1,
+                  "euler",
+                  "simple",
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "type": "VAELoader",
+                "pos": [
+                  2262.4470827664904,
+                  93.24787864068625
+                ],
+                "size": [
+                  213.73611450195312,
+                  68.33333333333334
+                ],
+                "flags": {},
+                "order": 1,
+                "mode": 0,
+                "inputs": [],
+                "outputs": [
+                  {
+                    "name": "VAE",
+                    "type": "VAE",
+                    "links": [
+                      13
+                    ]
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "comfy-core",
+                  "ver": "0.3.76",
+                  "Node name for S&R": "VAELoader",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  "ae.safetensors"
+                ]
+              },
+              {
+                "id": 11,
+                "type": "VAEDecode",
+                "pos": [
+                  2526.589706156884,
+                  100.4172376521125
+                ],
+                "size": [
+                  187.5,
+                  60
+                ],
+                "flags": {},
+                "order": 10,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "samples",
+                    "type": "LATENT",
+                    "link": 12
+                  },
+                  {
+                    "name": "vae",
+                    "type": "VAE",
+                    "link": 13
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "IMAGE",
+                    "type": "IMAGE",
+                    "links": [
+                      14
+                    ]
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "comfy-core",
+                  "ver": "0.3.76",
+                  "Node name for S&R": "VAEDecode",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": []
+              },
+              {
+                "id": 12,
+                "type": "FastLaplacianSharpen",
+                "pos": [
+                  2767.1508376604534,
+                  100.4172376521125
+                ],
+                "size": [
+                  225.6944529215495,
+                  68.33333333333334
+                ],
+                "flags": {},
+                "order": 11,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "images",
+                    "type": "IMAGE",
+                    "link": 14
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "IMAGE",
+                    "type": "IMAGE",
+                    "links": [
+                      16
+                    ]
+                  }
+                ],
+                "properties": {
+                  "aux_id": "vrgamegirl19/comfyui-vrgamedevgirl",
+                  "ver": "80d994e4296a352b76982cf548845c274a42eaf2",
+                  "Node name for S&R": "FastLaplacianSharpen",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  0.4
+                ]
+              },
+              {
+                "id": 13,
+                "type": "FastFilmGrain",
+                "pos": [
+                  2763.054048013794,
+                  334.8581818446806
+                ],
+                "size": [
+                  292.5555674235026,
+                  125
+                ],
+                "flags": {},
+                "order": 13,
+                "mode": 4,
+                "inputs": [
+                  {
+                    "name": "images",
+                    "type": "IMAGE",
+                    "link": 17
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "IMAGE",
+                    "type": "IMAGE",
+                    "links": [
+                      18
+                    ]
+                  }
+                ],
+                "properties": {
+                  "aux_id": "vrgamegirl19/comfyui-vrgamedevgirl",
+                  "ver": "80d994e4296a352b76982cf548845c274a42eaf2",
+                  "Node name for S&R": "FastFilmGrain",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  0.012,
+                  0.39,
+                  4
+                ]
+              },
+              {
+                "id": 14,
+                "type": "Fast Bypasser (rgthree)",
+                "pos": [
+                  2765.1024428371234,
+                  207.90785720780818
+                ],
+                "size": [
+                  287.81944274902344,
+                  88.33333333333334
+                ],
+                "flags": {},
+                "order": 12,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "dir": 3,
+                    "name": "🌀 Fast Laplacian Sharpen",
+                    "type": "*",
+                    "link": 16
+                  },
+                  {
+                    "dir": 3,
+                    "name": "",
+                    "type": "*",
+                    "link": null
+                  }
+                ],
+                "outputs": [
+                  {
+                    "dir": 4,
+                    "name": "OPT_CONNECTION",
+                    "type": "*",
+                    "links": [
+                      17
+                    ]
+                  }
+                ],
+                "properties": {
+                  "toggleRestriction": "default",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                }
+              },
+              {
+                "id": 15,
+                "type": "Fast Bypasser (rgthree)",
+                "pos": [
+                  2765.1024428371234,
+                  507.8723471070283
+                ],
+                "size": [
+                  259.1527811686198,
+                  88.33333333333334
+                ],
+                "flags": {},
+                "order": 14,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "dir": 3,
+                    "name": "🎞️ Fast Film Grain",
+                    "type": "*",
+                    "link": 18
+                  },
+                  {
+                    "dir": 3,
+                    "name": "",
+                    "type": "*",
+                    "link": null
+                  }
+                ],
+                "outputs": [
+                  {
+                    "dir": 4,
+                    "name": "OPT_CONNECTION",
+                    "type": "*",
+                    "links": [
+                      19
+                    ]
+                  }
+                ],
+                "properties": {
+                  "toggleRestriction": "default",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                }
+              },
+              {
+                "id": 16,
+                "type": "Save Image (LoraManager)",
+                "pos": [
+                  3157.5193712220853,
+                  371.30456566410135
+                ],
+                "size": [
+                  349.76389567057294,
+                  223.3055623372396
+                ],
+                "flags": {},
+                "order": 15,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "images",
+                    "type": "IMAGE",
+                    "link": 19
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "images",
+                    "type": "IMAGE",
+                    "links": [
+                      20
+                    ]
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "comfyui-lora-manager",
+                  "ver": "0.9.11",
+                  "Node name for S&R": "Save Image (LoraManager)",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  "ComfyUI",
+                  "png",
+                  false,
+                  100,
+                  true,
+                  true
+                ]
+              },
+              {
+                "id": 1,
+                "type": "UnetLoaderGGUF",
+                "pos": [
+                  580.0929083570272,
+                  -106.72013081928313
+                ],
+                "size": [
+                  351.2361145019531,
+                  145.43055216471356
+                ],
+                "flags": {},
+                "order": 2,
+                "mode": 0,
+                "inputs": [],
+                "outputs": [
+                  {
+                    "name": "MODEL",
+                    "type": "MODEL",
+                    "links": [
+                      1
+                    ]
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "ComfyUI-GGUF",
+                  "ver": "d3e14efda6bb891de0406d2debffcb07e88d4231",
+                  "Node name for S&R": "UnetLoaderGGUF",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  "Zimage\\z_image_turbo-Q6_K.gguf"
+                ]
+              },
+              {
+                "id": 4,
+                "type": "Lora Loader (LoraManager)",
+                "pos": [
+                  948.7035305158696,
+                  90.32515500847936
+                ],
+                "size": [
+                  397.87501017252606,
+                  485.41666666666674
+                ],
+                "flags": {},
+                "order": 5,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "model",
+                    "type": "MODEL",
+                    "link": 3
+                  },
+                  {
+                    "name": "clip",
+                    "shape": 7,
+                    "type": "CLIP",
+                    "link": 2
+                  },
+                  {
+                    "name": "lora_stack",
+                    "shape": 7,
+                    "type": "LORA_STACK",
+                    "link": null
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "MODEL",
+                    "type": "MODEL",
+                    "links": [
+                      11
+                    ]
+                  },
+                  {
+                    "name": "CLIP",
+                    "type": "CLIP",
+                    "links": [
+                      6,
+                      7
+                    ]
+                  },
+                  {
+                    "name": "trigger_words",
+                    "type": "STRING",
+                    "links": [
+                      4
+                    ]
+                  },
+                  {
+                    "name": "loaded_loras",
+                    "type": "STRING",
+                    "links": null
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "comfyui-lora-manager",
+                  "ver": "0.9.11",
+                  "Node name for S&R": "Lora Loader (LoraManager)",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  "<lora:CuteRetro_ZIT_v2:0.80>",
+                  [
+                    {
+                      "name": "CuteRetro_ZIT_v2",
+                      "strength": "0.80",
+                      "active": true,
+                      "expanded": false,
+                      "clipStrength": "0.80"
+                    }
+                  ]
+                ]
+              },
+              {
+                "id": 17,
+                "type": "PreviewImage",
+                "pos": [
+                  3579.259969977156,
+                  370.2946065816392
+                ],
+                "size": [
+                  933.0832926432292,
+                  1285.111083984375
+                ],
+                "flags": {},
+                "order": 16,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "images",
+                    "type": "IMAGE",
+                    "link": 20
+                  }
+                ],
+                "outputs": [],
+                "properties": {
+                  "cnr_id": "comfy-core",
+                  "ver": "0.3.76",
+                  "Node name for S&R": "PreviewImage",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [],
+                "color": "#233",
+                "bgcolor": "#355"
+              },
+              {
+                "id": 8,
+                "type": "EmptySD3LatentImage",
+                "pos": [
+                  1431.774245450843,
+                  366.1336300282571
+                ],
+                "size": [
+                  225,
+                  125
+                ],
+                "flags": {},
+                "order": 3,
+                "mode": 0,
+                "inputs": [],
+                "outputs": [
+                  {
+                    "name": "LATENT",
+                    "type": "LATENT",
+                    "links": [
+                      8
+                    ]
+                  }
+                ],
+                "properties": {
+                  "cnr_id": "comfy-core",
+                  "ver": "0.3.76",
+                  "Node name for S&R": "EmptySD3LatentImage",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  1024,
+                  1024,
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "type": "Prompt (LoraManager)",
+                "pos": [
+                  1740.706746297219,
+                  82.9809302352777
+                ],
+                "size": [
+                  420.0416564941406,
+                  218.4722137451172
+                ],
+                "flags": {},
+                "order": 8,
+                "mode": 0,
+                "inputs": [
+                  {
+                    "name": "clip",
+                    "type": "CLIP",
+                    "link": 6
+                  },
+                  {
+                    "name": "trigger_words",
+                    "shape": 7,
+                    "type": "STRING",
+                    "link": 5
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "CONDITIONING",
+                    "type": "CONDITIONING",
+                    "links": [
+                      10
+                    ]
+                  },
+                  {
+                    "name": "PROMPT",
+                    "type": "STRING",
+                    "links": null
+                  }
+                ],
+                "title": "Positive Prompt",
+                "properties": {
+                  "cnr_id": "comfyui-lora-manager",
+                  "ver": "0.9.11",
+                  "Node name for S&R": "Prompt (LoraManager)",
+                  "ue_properties": {
+                    "widget_ue_connectable": {},
+                    "input_ue_unconnectable": {},
+                    "version": "7.5.1"
+                  }
+                },
+                "widgets_values": [
+                  "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene"
+                ],
+                "color": "#232",
+                "bgcolor": "#353"
+              }
+            ],
+            "links": [
+              [
+                1,
+                1,
+                0,
+                3,
+                0,
+                "MODEL"
+              ],
+              [
+                2,
+                2,
+                0,
+                4,
+                1,
+                "CLIP"
+              ],
+              [
+                3,
+                3,
+                0,
+                4,
+                0,
+                "MODEL"
+              ],
+              [
+                4,
+                4,
+                2,
+                5,
+                0,
+                "string"
+              ],
+              [
+                5,
+                5,
+                0,
+                6,
+                1,
+                "STRING"
+              ],
+              [
+                6,
+                4,
+                1,
+                6,
+                0,
+                "CLIP"
+              ],
+              [
+                7,
+                4,
+                1,
+                7,
+                0,
+                "CLIP"
+              ],
+              [
+                8,
+                8,
+                0,
+                9,
+                3,
+                "LATENT"
+              ],
+              [
+                9,
+                7,
+                0,
+                9,
+                2,
+                "CONDITIONING"
+              ],
+              [
+                10,
+                6,
+                0,
+                9,
+                1,
+                "CONDITIONING"
+              ],
+              [
+                11,
+                4,
+                0,
+                9,
+                0,
+                "MODEL"
+              ],
+              [
+                12,
+                9,
+                0,
+                11,
+                0,
+                "LATENT"
+              ],
+              [
+                13,
+                10,
+                0,
+                11,
+                1,
+                "VAE"
+              ],
+              [
+                14,
+                11,
+                0,
+                12,
+                0,
+                "IMAGE"
+              ],
+              [
+                16,
+                12,
+                0,
+                14,
+                0,
+                "*"
+              ],
+              [
+                17,
+                14,
+                0,
+                13,
+                0,
+                "IMAGE"
+              ],
+              [
+                18,
+                13,
+                0,
+                15,
+                0,
+                "*"
+              ],
+              [
+                19,
+                15,
+                0,
+                16,
+                0,
+                "IMAGE"
+              ],
+              [
+                20,
+                16,
+                0,
+                17,
+                0,
+                "IMAGE"
+              ]
+            ],
+            "groups": [],
+            "config": {},
+            "extra": {
+              "ue_links": [],
+              "ds": {
+                "scale": 1.1918176537727498,
+                "offset": [
+                  -1355.9629921033777,
+                  -133.6231487335197
+                ]
+              },
+              "workflowRendererVersion": "LG",
+              "links_added_by_ue": [],
+              "frontendVersion": "1.34.9"
+            },
+            "version": 0.4,
+            "seed_widgets": {
+              "9": 0
+            }
+          },
+          "prompt": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene",
+          "negativePrompt": "bad ugly bad hands bad feet",
+          "clip_name": "Qwen3-4B-UD-Q6_K_XL.gguf",
+          "clip_type": "lumina2",
+          "seed": "105918980883001",
+          "steps": "9",
+          "cfgScale": "1",
+          "sampler": "euler",
+          "scheduler": "simple",
+          "denoise": "1",
+          "vae_name": "ae.safetensors",
+          "unet_name": "Zimage\\z_image_turbo-Q6_K.gguf",
+          "raw_parameters": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\n<lora:CuteRetro_ZIT_v2:0.8>\nNegative prompt: bad ugly bad hands bad feet\nSteps: 9, Sampler: Euler simple, CFG scale: 1.0, Seed: 105918980883001, Size: 1024x1024, Lora hashes: \"CuteRetro_ZIT_v2: cfc2865cfd\"",
+          "size": "1024x1024",
+          "Lora hashes": "\"CuteRetro_ZIT_v2: cfc2865cfd\"",
+          "Model": "Zimage\\z_image_turbo-Q6_K.gguf"
+        },
+        "__imagePlusRawMeta": {
+          "parameters": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\n<lora:CuteRetro_ZIT_v2:0.8>\nNegative prompt: bad ugly bad hands bad feet\nSteps: 9, Sampler: Euler simple, CFG scale: 1.0, Seed: 105918980883001, Size: 1024x1024, Lora hashes: \"CuteRetro_ZIT_v2: cfc2865cfd\"",
+          "workflow": "{\"id\": \"277d5330-9a37-4a5b-913a-aff3332bdfee\", \"revision\": 0, \"last_node_id\": 17, \"last_link_id\": 20, \"nodes\": [{\"id\": 2, \"type\": \"CLIPLoaderGGUF\", \"pos\": [578.0695335629132, 81.1074011737234], \"size\": [354.26389058430993, 150.9999974568685], \"flags\": {}, \"order\": 0, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"CLIP\", \"type\": \"CLIP\", \"links\": [2]}], \"properties\": {\"cnr_id\": \"ComfyUI-GGUF\", \"ver\": \"d3e14efda6bb891de0406d2debffcb07e88d4231\", \"Node name for S&R\": \"CLIPLoaderGGUF\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"Qwen3-4B-UD-Q6_K_XL.gguf\", \"lumina2\"]}, {\"id\": 3, \"type\": \"ModelSamplingAuraFlow\", \"pos\": [989.3715525555219, -107.04488805407404], \"size\": [225, 68.33333333333334], \"flags\": {}, \"order\": 4, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 1}], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [3]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"ModelSamplingAuraFlow\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [1.73]}, {\"id\": 5, \"type\": \"TriggerWord Toggle (LoraManager)\", \"pos\": [1410.341091282844, 102.64049823721763], \"size\": [273.8666595458984, 248], \"flags\": {}, \"order\": 7, \"mode\": 0, \"inputs\": [{\"name\": \"trigger_words\", \"shape\": 7, \"type\": \"string\", \"link\": 4}], \"outputs\": [{\"name\": \"filtered_trigger_words\", \"type\": \"STRING\", \"links\": [5]}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"TriggerWord Toggle (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [true, true, false, [{\"text\": \"masterpiece, best quality, anime coloring, anime screencap,\", \"active\": true, \"strength\": null, \"highlighted\": false}], \"masterpiece, best quality, anime coloring, anime screencap,\"]}, {\"id\": 7, \"type\": \"CLIPTextEncode\", \"pos\": [1847.273042726062, 408.1006810070729], \"size\": [210, 34], \"flags\": {\"collapsed\": true}, \"order\": 6, \"mode\": 0, \"inputs\": [{\"name\": \"clip\", \"type\": \"CLIP\", \"link\": 7}], \"outputs\": [{\"name\": \"CONDITIONING\", \"type\": \"CONDITIONING\", \"links\": [9]}], \"title\": \"Negative Prompt\", \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"CLIPTextEncode\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"bad ugly bad hands bad feet\"], \"color\": \"#322\", \"bgcolor\": \"#533\", \"shape\": 2}, {\"id\": 9, \"type\": \"KSampler\", \"pos\": [2253.5540632962975, 229.3160370870469], \"size\": [225, 583.3333333333334], \"flags\": {}, \"order\": 9, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 11}, {\"name\": \"positive\", \"type\": \"CONDITIONING\", \"link\": 10}, {\"name\": \"negative\", \"type\": \"CONDITIONING\", \"link\": 9}, {\"name\": \"latent_image\", \"type\": \"LATENT\", \"link\": 8}], \"outputs\": [{\"name\": \"LATENT\", \"type\": \"LATENT\", \"links\": [12]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"KSampler\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [105918980883001, \"randomize\", 9, 1, \"euler\", \"simple\", 1]}, {\"id\": 10, \"type\": \"VAELoader\", \"pos\": [2262.4470827664904, 93.24787864068625], \"size\": [213.73611450195312, 68.33333333333334], \"flags\": {}, \"order\": 1, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"VAE\", \"type\": \"VAE\", \"links\": [13]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"VAELoader\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"ae.safetensors\"]}, {\"id\": 11, \"type\": \"VAEDecode\", \"pos\": [2526.589706156884, 100.4172376521125], \"size\": [187.5, 60], \"flags\": {}, \"order\": 10, \"mode\": 0, \"inputs\": [{\"name\": \"samples\", \"type\": \"LATENT\", \"link\": 12}, {\"name\": \"vae\", \"type\": \"VAE\", \"link\": 13}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [14]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"VAEDecode\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": []}, {\"id\": 12, \"type\": \"FastLaplacianSharpen\", \"pos\": [2767.1508376604534, 100.4172376521125], \"size\": [225.6944529215495, 68.33333333333334], \"flags\": {}, \"order\": 11, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 14}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [16]}], \"properties\": {\"aux_id\": \"vrgamegirl19/comfyui-vrgamedevgirl\", \"ver\": \"80d994e4296a352b76982cf548845c274a42eaf2\", \"Node name for S&R\": \"FastLaplacianSharpen\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [0.4]}, {\"id\": 13, \"type\": \"FastFilmGrain\", \"pos\": [2763.054048013794, 334.8581818446806], \"size\": [292.5555674235026, 125], \"flags\": {}, \"order\": 13, \"mode\": 4, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 17}], \"outputs\": [{\"name\": \"IMAGE\", \"type\": \"IMAGE\", \"links\": [18]}], \"properties\": {\"aux_id\": \"vrgamegirl19/comfyui-vrgamedevgirl\", \"ver\": \"80d994e4296a352b76982cf548845c274a42eaf2\", \"Node name for S&R\": \"FastFilmGrain\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [0.012, 0.39, 4]}, {\"id\": 14, \"type\": \"Fast Bypasser (rgthree)\", \"pos\": [2765.1024428371234, 207.90785720780818], \"size\": [287.81944274902344, 88.33333333333334], \"flags\": {}, \"order\": 12, \"mode\": 0, \"inputs\": [{\"dir\": 3, \"name\": \"\\ud83c\\udf00 Fast Laplacian Sharpen\", \"type\": \"*\", \"link\": 16}, {\"dir\": 3, \"name\": \"\", \"type\": \"*\", \"link\": null}], \"outputs\": [{\"dir\": 4, \"name\": \"OPT_CONNECTION\", \"type\": \"*\", \"links\": [17]}], \"properties\": {\"toggleRestriction\": \"default\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}}, {\"id\": 15, \"type\": \"Fast Bypasser (rgthree)\", \"pos\": [2765.1024428371234, 507.8723471070283], \"size\": [259.1527811686198, 88.33333333333334], \"flags\": {}, \"order\": 14, \"mode\": 0, \"inputs\": [{\"dir\": 3, \"name\": \"\\ud83c\\udf9e\\ufe0f Fast Film Grain\", \"type\": \"*\", \"link\": 18}, {\"dir\": 3, \"name\": \"\", \"type\": \"*\", \"link\": null}], \"outputs\": [{\"dir\": 4, \"name\": \"OPT_CONNECTION\", \"type\": \"*\", \"links\": [19]}], \"properties\": {\"toggleRestriction\": \"default\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}}, {\"id\": 16, \"type\": \"Save Image (LoraManager)\", \"pos\": [3157.5193712220853, 371.30456566410135], \"size\": [349.76389567057294, 223.3055623372396], \"flags\": {}, \"order\": 15, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 19}], \"outputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"links\": [20]}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Save Image (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"ComfyUI\", \"png\", false, 100, true, true]}, {\"id\": 1, \"type\": \"UnetLoaderGGUF\", \"pos\": [580.0929083570272, -106.72013081928313], \"size\": [351.2361145019531, 145.43055216471356], \"flags\": {}, \"order\": 2, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [1]}], \"properties\": {\"cnr_id\": \"ComfyUI-GGUF\", \"ver\": \"d3e14efda6bb891de0406d2debffcb07e88d4231\", \"Node name for S&R\": \"UnetLoaderGGUF\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"Zimage\\\\z_image_turbo-Q6_K.gguf\"]}, {\"id\": 4, \"type\": \"Lora Loader (LoraManager)\", \"pos\": [948.7035305158696, 90.32515500847936], \"size\": [397.87501017252606, 485.41666666666674], \"flags\": {}, \"order\": 5, \"mode\": 0, \"inputs\": [{\"name\": \"model\", \"type\": \"MODEL\", \"link\": 3}, {\"name\": \"clip\", \"shape\": 7, \"type\": \"CLIP\", \"link\": 2}, {\"name\": \"lora_stack\", \"shape\": 7, \"type\": \"LORA_STACK\", \"link\": null}], \"outputs\": [{\"name\": \"MODEL\", \"type\": \"MODEL\", \"links\": [11]}, {\"name\": \"CLIP\", \"type\": \"CLIP\", \"links\": [6, 7]}, {\"name\": \"trigger_words\", \"type\": \"STRING\", \"links\": [4]}, {\"name\": \"loaded_loras\", \"type\": \"STRING\", \"links\": null}], \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Lora Loader (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"<lora:CuteRetro_ZIT_v2:0.80>\", [{\"name\": \"CuteRetro_ZIT_v2\", \"strength\": \"0.80\", \"active\": true, \"expanded\": false, \"clipStrength\": \"0.80\"}]]}, {\"id\": 17, \"type\": \"PreviewImage\", \"pos\": [3579.259969977156, 370.2946065816392], \"size\": [933.0832926432292, 1285.111083984375], \"flags\": {}, \"order\": 16, \"mode\": 0, \"inputs\": [{\"name\": \"images\", \"type\": \"IMAGE\", \"link\": 20}], \"outputs\": [], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"PreviewImage\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [], \"color\": \"#233\", \"bgcolor\": \"#355\"}, {\"id\": 8, \"type\": \"EmptySD3LatentImage\", \"pos\": [1431.774245450843, 366.1336300282571], \"size\": [225, 125], \"flags\": {}, \"order\": 3, \"mode\": 0, \"inputs\": [], \"outputs\": [{\"name\": \"LATENT\", \"type\": \"LATENT\", \"links\": [8]}], \"properties\": {\"cnr_id\": \"comfy-core\", \"ver\": \"0.3.76\", \"Node name for S&R\": \"EmptySD3LatentImage\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [1024, 1024, 1]}, {\"id\": 6, \"type\": \"Prompt (LoraManager)\", \"pos\": [1740.706746297219, 82.9809302352777], \"size\": [420.0416564941406, 218.4722137451172], \"flags\": {}, \"order\": 8, \"mode\": 0, \"inputs\": [{\"name\": \"clip\", \"type\": \"CLIP\", \"link\": 6}, {\"name\": \"trigger_words\", \"shape\": 7, \"type\": \"STRING\", \"link\": 5}], \"outputs\": [{\"name\": \"CONDITIONING\", \"type\": \"CONDITIONING\", \"links\": [10]}, {\"name\": \"PROMPT\", \"type\": \"STRING\", \"links\": null}], \"title\": \"Positive Prompt\", \"properties\": {\"cnr_id\": \"comfyui-lora-manager\", \"ver\": \"0.9.11\", \"Node name for S&R\": \"Prompt (LoraManager)\", \"ue_properties\": {\"widget_ue_connectable\": {}, \"input_ue_unconnectable\": {}, \"version\": \"7.5.1\"}}, \"widgets_values\": [\"a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene\"], \"color\": \"#232\", \"bgcolor\": \"#353\"}], \"links\": [[1, 1, 0, 3, 0, \"MODEL\"], [2, 2, 0, 4, 1, \"CLIP\"], [3, 3, 0, 4, 0, \"MODEL\"], [4, 4, 2, 5, 0, \"string\"], [5, 5, 0, 6, 1, \"STRING\"], [6, 4, 1, 6, 0, \"CLIP\"], [7, 4, 1, 7, 0, \"CLIP\"], [8, 8, 0, 9, 3, \"LATENT\"], [9, 7, 0, 9, 2, \"CONDITIONING\"], [10, 6, 0, 9, 1, \"CONDITIONING\"], [11, 4, 0, 9, 0, \"MODEL\"], [12, 9, 0, 11, 0, \"LATENT\"], [13, 10, 0, 11, 1, \"VAE\"], [14, 11, 0, 12, 0, \"IMAGE\"], [16, 12, 0, 14, 0, \"*\"], [17, 14, 0, 13, 0, \"IMAGE\"], [18, 13, 0, 15, 0, \"*\"], [19, 15, 0, 16, 0, \"IMAGE\"], [20, 16, 0, 17, 0, \"IMAGE\"]], \"groups\": [], \"config\": {}, \"extra\": {\"ue_links\": [], \"ds\": {\"scale\": 1.1918176537727498, \"offset\": [-1355.9629921033777, -133.6231487335197]}, \"workflowRendererVersion\": \"LG\", \"links_added_by_ue\": [], \"frontendVersion\": \"1.34.9\"}, \"version\": 0.4, \"seed_widgets\": {\"9\": 0}}"
+        },
+        "__imagePlusPositive": "a chubby chibi, furry gerbil, a cigarett in its mouth, scars running down its face, sitting in a black convertable, looking at the camera, smiling in a cheeky snear, neck covered in gold chains, a Barbie doll sitting in the passengers seat, darm humor, exagerated scene",
+        "__imagePlusNegative": "bad ugly bad hands bad feet",
+        "__imagePlusImageWidth": 1024,
+        "__imagePlusImageHeight": 1024,
+        "__imagePlusImageSizeText": "1024 Ã— 1024 px",
+        "__imagePlusActiveTab": "filtered"
+      }
+    },
+    {
+      "id": 6,
+      "type": "ImagePlusKSamplerAdvNode",
+      "pos": [
+        1306.8127929989546,
+        215.9953333333333
+      ],
+      "size": [
+        270,
+        590
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 2
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 3
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 4
+        },
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-imageplus",
+        "ver": "d2fe5d557128a7e04c86c9a1e8b0a139f44a832d",
+        "Node name for S&R": "ImagePlusKSamplerAdvNode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        true,
+        1536,
+        1536,
+        1,
+        376093673248542,
+        "randomize",
+        8,
+        1,
+        "res_multistep",
+        "simple",
+        0.45
+      ],
+      "widgets_values_named": {
+        "image_in": true,
+        "width": 1536,
+        "height": 1536,
+        "batch_size": 1,
+        "seed": 376093673248542,
+        "control_after_generate": "randomize",
+        "steps": 8,
+        "cfg": 1,
+        "sampler_name": "res_multistep",
+        "scheduler": "simple",
+        "denoise": 0.45
+      }
+    },
+    {
+      "id": 7,
+      "type": "VAEDecode",
+      "pos": [
+        1631.540319675169,
+        216.7288065388997
+      ],
+      "size": [
+        225,
+        72
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 6
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.27.0",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "SaveImage",
+      "pos": [
+        1908.2483233096086,
+        216.6462333020596
+      ],
+      "size": [
+        595.910112122142,
+        1004.6229151200928
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.27.0",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "ComfyUI"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      4,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      4,
+      1,
+      6,
+      1,
+      "VAE"
+    ],
+    [
+      3,
+      4,
+      2,
+      6,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      4,
+      4,
+      3,
+      6,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      5,
+      5,
+      0,
+      6,
+      4,
+      "IMAGE"
+    ],
+    [
+      6,
+      6,
+      0,
+      7,
+      0,
+      "LATENT"
+    ],
+    [
+      7,
+      6,
+      1,
+      7,
+      1,
+      "VAE"
+    ],
+    [
+      8,
+      7,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      9,
+      3,
+      0,
+      4,
+      0,
+      "MODEL"
+    ],
+    [
+      10,
+      2,
+      0,
+      4,
+      1,
+      "CLIP"
+    ],
+    [
+      11,
+      1,
+      0,
+      4,
+      2,
+      "VAE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Krea 2 Loader",
+      "bounding": [
+        50.676666666666605,
+        144.7266666666667,
+        321.79048672236945,
+        439.2319187384622
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ue_links": [],
+    "ds": {
+      "scale": 0.6830134553650705,
+      "offset": [
+        -151.7551334251606,
+        93.49778521579427
+      ]
+    },
+    "anomalous_hashes": {
+      "1_Wan2_1_VAE_fp32.safetensors": {
+        "hash": "",
+        "size": 507591244,
+        "url": ""
+      },
+      "2_qwen3VL4BAbliteratedComfyui_v10.safetensors": {
+        "hash": "",
+        "size": 8875713408,
+        "url": ""
+      },
+      "3_Krea2\\krea2W4a8_turboW4a8.safetensors": {
+        "hash": "",
+        "size": 8854239904,
+        "url": ""
+      },
+      "3_Krea2/krea2W4a8_turboW4a8.safetensors": {
+        "hash": "",
+        "size": 8854239904,
+        "url": ""
+      }
+    },
+    "links_added_by_ue": [],
+    "frontendVersion": "1.53.10",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "extensions": {
+    "seed_widgets": {
+      "6": 4
+    }
+  },
+  "version": 0.4
+}
